@@ -1,0 +1,40 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const envelope = document.getElementById('envelope');
+    const inviteContent = document.getElementById('inviteContent');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Open envelope
+    envelope.addEventListener('click', function(e) {
+        e.stopPropagation();
+        envelope.classList.add('open');
+        inviteContent.classList.add('active');
+        overlay.classList.add('active');
+    });
+
+    // Close invite
+    closeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        envelope.classList.remove('open');
+        inviteContent.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+
+    // Close on overlay click
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            envelope.classList.remove('open');
+            inviteContent.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && inviteContent.classList.contains('active')) {
+            envelope.classList.remove('open');
+            inviteContent.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+    });
+});

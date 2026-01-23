@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc8 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Envelope Styling */
+.envelope-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+.envelope {
+    width: 280px;
+    height: 180px;
+    background-color: #f5f5f5;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    transition: all 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+.envelope:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+}
+
+.envelope-flap {
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(to bottom, #f5f5f5, #e8e8e8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+    transition: transform 0.6s ease;
+    transform-origin: top center;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(120deg);
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 4px;
+}
+
+.envelope-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 2px;
+}
+
+/* Ribbon and Bow */
+.ribbon {
+    width: 100%;
+    height: 8px;
+    background-color: #d4af37;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+.bow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 30px;
+    z-index: 6;
+}
+
+.bow-left,
+.bow-right {
+    position: absolute;
+    width: 18px;
+    height: 25px;
+    background-color: #1a1a1a;
+    border-radius: 50% 0 50% 50%;
+    top: 0;
+}
+
+.bow-left {
+    left: 0;
+    transform: skewY(-15deg);
+}
+
+.bow-right {
+    right: 0;
+    transform: scaleX(-1) skewY(-15deg);
+}
+
+.bow-center {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #1a1a1a;
+    border-radius: 50%;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Invite Content */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 15;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.6s ease;
+}
+
+.overlay.active {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.invite-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 20;
+    opacity: 0;
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+.invite-content.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.invite-card {
+    background: linear-gradient(135deg, #fefdfb 0%, #f5f1e8 100%);
+    width: 90vw;
+    max-width: 600px;
+    padding: 60px 50px;
+    border: 2px solid #d4af37;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    position: relative;
+    animation: slideIn 0.6s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.invite-header {
+    text-align: right;
+    margin-bottom: 40px;
+}
+
+.date-large {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #4a4a4a;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.invite-body {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.invite-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: #4a4a4a;
+    line-height: 1.2;
+    margin: 0 0 30px 0;
+    letter-spacing: 2px;
+}
+
+.the-date {
+    color: #d4af37;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.invite-details {
+    margin: 30px 0;
+}
+
+.for-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+    margin: 0 0 15px 0;
+    letter-spacing: 1px;
+}
+
+.couple-names {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #4a4a4a;
+    margin: 15px 0;
+    letter-spacing: 1px;
+}
+
+.bride,
+.groom {
+    display: block;
+    margin: 5px 0;
+}
+
+.and {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    color: #999;
+    margin: 10px 0;
+}
+
+.wedding-date {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #4a4a4a;
+    letter-spacing: 2px;
+    margin: 20px 0 10px 0;
+}
+
+.invitation-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: #999;
+    font-style: italic;
+    margin: 0;
+}
+
+.invite-footer {
+    text-align: center;
+    border-top: 1px solid #d4af37;
+    padding-top: 30px;
+    margin-top: 30px;
+}
+
+.love-message {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    color: #4a4a4a;
+    border: 2px solid #d4af37;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-weight: 300;
+}
+
+.close-btn:hover {
+    background-color: #d4af37;
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .invite-card {
+        padding: 40px 30px;
+    }
+
+    .date-large {
+        font-size: 60px;
+    }
+
+    .invite-title {
+        font-size: 48px;
+    }
+
+    .couple-names {
+        font-size: 32px;
+    }
+
+    .envelope {
+        width: 240px;
+        height: 150px;
+    }
+
+    .envelope-text {
+        font-size: 20px;
+    }
+}

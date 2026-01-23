@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save the Date - Belinda & Nick</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:ital@0;1&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Envelope Container -->
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <!-- Envelope Flap -->
+                <div class="envelope-flap">
+                    <div class="ribbon"></div>
+                    <div class="bow">
+                        <div class="bow-left"></div>
+                        <div class="bow-right"></div>
+                        <div class="bow-center"></div>
+                    </div>
+                </div>
+                
+                <!-- Envelope Body -->
+                <div class="envelope-body">
+                    <p class="envelope-text">Save the Date</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invite Content (Hidden initially) -->
+        <div class="invite-content" id="inviteContent">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            
+            <div class="invite-card">
+                <div class="invite-header">
+                    <h1 class="date-large">21.05.27</h1>
+                </div>
+
+                <div class="invite-body">
+                    <h2 class="invite-title">SAVE<br><span class="the-date">the<br>DATE</span></h2>
+
+                    <div class="invite-details">
+                        <p class="for-text">for the wedding of</p>
+                        <p class="couple-names">
+                            <span class="bride">BELINDA</span>
+                            <span class="and">and</span>
+                            <span class="groom">NICK</span>
+                        </p>
+                        <p class="wedding-date">MAY 21, 2027</p>
+                        <p class="invitation-note">invitation to follow</p>
+                    </div>
+                </div>
+
+                <div class="invite-footer">
+                    <p class="love-message">Together with their families<br>request the pleasure of your company</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background overlay -->
+        <div class="overlay" id="overlay"></div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
