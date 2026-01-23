@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Cormorant Garamond', serif;
-    background: linear-gradient(135deg, #1a1612 0%, #2d2520 50%, #1f1b17 100%);
+    background: #ffffff;
     background-attachment: fixed;
     margin: 0;
     padding: 0;
@@ -25,9 +25,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
-        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+    background-image: none;
     pointer-events: none;
     z-index: 1;
 }
