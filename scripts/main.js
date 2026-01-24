@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const inviteContent = document.getElementById('inviteContent');
     const overlay = document.getElementById('overlay');
     const closeBtn = document.getElementById('closeBtn');
+    const container = document.querySelector('.container');
 
     // Open envelope
     envelope.addEventListener('click', function(e) {
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         envelope.src = 'assets/black envelope open.png';
         inviteContent.classList.add('active');
         overlay.classList.add('active');
+        container.classList.add('invite-open');
     });
 
     // Close invite
@@ -20,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         envelope.src = 'assets/Black C5 Straight fl.png';
         inviteContent.classList.remove('active');
         overlay.classList.remove('active');
+        container.classList.remove('invite-open');
     });
 
     // Close on overlay click
@@ -29,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             envelope.src = 'assets/Black C5 Straight fl.png';
             inviteContent.classList.remove('active');
             overlay.classList.remove('active');
+            container.classList.remove('invite-open');
         }
     });
 
@@ -39,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             envelope.src = 'assets/Black C5 Straight fl.png';
             inviteContent.classList.remove('active');
             overlay.classList.remove('active');
+            container.classList.remove('invite-open');
         }
     });
 });

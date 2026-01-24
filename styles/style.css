@@ -55,6 +55,10 @@ body::before {
     font-style: italic;
     margin: 0 0 10px 0;
     letter-spacing: 1px;
+    animation: typewriter 1s steps(20, end) 0.1s forwards;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
 }
 
 .couple-names-header {
@@ -64,6 +68,19 @@ body::before {
     color: #1a1a1a;
     margin: 0;
     letter-spacing: 3px;
+    animation: typewriter 1s steps(15, end) 1.2s forwards;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 /* Envelope Styling */
@@ -318,6 +335,11 @@ body::before {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
     pointer-events: auto;
+}
+
+.container.invite-open .mail-header,
+.container.invite-open .click-prompt {
+    display: none;
 }
 
 .invite-card {
