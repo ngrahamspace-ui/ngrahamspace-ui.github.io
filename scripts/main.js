@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     envelope.addEventListener('click', function(e) {
         e.stopPropagation();
         envelope.classList.add('open');
+        envelope.src = 'assets/black envelope open.png';
         inviteContent.classList.add('active');
         overlay.classList.add('active');
     });
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     closeBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         envelope.classList.remove('open');
+        envelope.src = 'assets/Black C5 Straight fl.png';
         inviteContent.classList.remove('active');
         overlay.classList.remove('active');
     });
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.addEventListener('click', function(e) {
         if (e.target === overlay) {
             envelope.classList.remove('open');
+            envelope.src = 'assets/Black C5 Straight fl.png';
             inviteContent.classList.remove('active');
             overlay.classList.remove('active');
         }
@@ -33,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && inviteContent.classList.contains('active')) {
             envelope.classList.remove('open');
+            envelope.src = 'assets/Black C5 Straight fl.png';
             inviteContent.classList.remove('active');
             overlay.classList.remove('active');
         }

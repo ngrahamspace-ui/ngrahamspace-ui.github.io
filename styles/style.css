@@ -82,13 +82,17 @@ body::before {
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
     position: relative;
     cursor: pointer;
-    transition: all 0.6s ease;
+    transition: all 0.6s ease, box-shadow 0s;
     display: block;
 }
 
 .envelope:hover {
     transform: translateY(-15px);
     box-shadow: 0 50px 120px rgba(0, 0, 0, 0.9);
+}
+
+.envelope.open {
+    box-shadow: none;
 }
 
 /* Click Prompt */
@@ -294,7 +298,7 @@ body::before {
 }
 
 .overlay.active {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6);
     opacity: 1;
     pointer-events: auto;
 }
@@ -322,7 +326,7 @@ body::before {
     max-width: 650px;
     padding: 0;
     border: none;
-    box-shadow: 0 50px 150px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 80px rgba(0, 0, 0, 0.6);
     border-radius: 0;
     position: relative;
     animation: slideIn 0.6s ease;
