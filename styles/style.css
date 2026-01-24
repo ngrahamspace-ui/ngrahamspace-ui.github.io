@@ -329,6 +329,10 @@ body::before {
     opacity: 0;
     transition: all 0.6s ease;
     pointer-events: none;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
 }
 
 .invite-content.active {
@@ -344,21 +348,24 @@ body::before {
 
 .invite-card {
     background: transparent;
-    width: 90vw;
-    max-width: 650px;
+    width: auto;
+    height: auto;
     padding: 0;
     border: none;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 80px rgba(0, 0, 0, 0.6);
+    box-shadow: none;
     border-radius: 0;
     position: relative;
     animation: slideIn 0.6s ease;
 }
 
 .invite-image {
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 90vw;
+    max-height: 90vh;
     display: block;
     border-radius: 0;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 80px rgba(0, 0, 0, 0.6);
 }
 
 @keyframes slideIn {
@@ -482,22 +489,7 @@ body::before {
 
 /* Close Button */
 .close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    color: #4a4a4a;
-    border: 2px solid #d4af37;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    font-weight: 300;
+    display: none;
 }
 
 .close-btn:hover {
