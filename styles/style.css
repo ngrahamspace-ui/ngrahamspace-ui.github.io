@@ -111,7 +111,7 @@ body::before {
 
 .envelope.open {
     box-shadow: none;
-    max-width: none;
+    max-width: 90vw;
 }
 
 /* Click Prompt */
@@ -351,7 +351,7 @@ body::before {
 
 .invite-card {
     background: transparent;
-    width: auto;
+    width: 100%;
     height: auto;
     padding: 0;
     border: none;
@@ -359,6 +359,9 @@ body::before {
     border-radius: 0;
     position: relative;
     animation: slideIn 0.6s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .invite-image {
