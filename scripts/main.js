@@ -13,6 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Create a ResizeObserver to watch for invite card size changes
+    const resizeObserver = new ResizeObserver(() => {
+        if (inviteContent.classList.contains('active')) {
+            syncEnvelopeWidth();
+        }
+    });
+
     // Open envelope
     envelope.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -21,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
         inviteContent.classList.add('active');
         overlay.classList.add('active');
         container.classList.add('invite-open');
+        
+        // Start observing invite card size changes
+        resizeObserver.observe(inviteCard);
         
         // Sync width after a small delay to ensure invite is rendered
         setTimeout(syncEnvelopeWidth, 100);
@@ -35,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         inviteContent.classList.remove('active');
         overlay.classList.remove('active');
         container.classList.remove('invite-open');
+        resizeObserver.unobserve(inviteCard);
     });
 
     // Close on overlay click
@@ -46,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             inviteContent.classList.remove('active');
             overlay.classList.remove('active');
             container.classList.remove('invite-open');
+            resizeObserver.unobserve(inviteCard);
         }
     });
 
@@ -58,10 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
             inviteContent.classList.remove('active');
             overlay.classList.remove('active');
             container.classList.remove('invite-open');
+            resizeObserver.unobserve(inviteCard);
         }
     });
 
-    // Sync width on window resize while invite is open
+    // Sync width on window resize while invite is open (backup for older browsers without ResizeObserver)
     window.addEventListener('resize', function() {
         if (inviteContent.classList.contains('active')) {
             syncEnvelopeWidth();
