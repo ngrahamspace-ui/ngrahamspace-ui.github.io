@@ -6,36 +6,168 @@
     <title>Save the Date - Belinda & Nick</title>
     <link rel="stylesheet" href="styles/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:ital@0;1&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIrmeT7YnJz5-X5HKkbSnfArZ_WfK_XDI&v=weekly&callback=initMap" async defer></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Top Message -->
-        <div class="mail-header">
-            <p class="mail-from">You've got mail from</p>
-            <p class="couple-names-header">BELINDA & NICK</p>
-        </div>
+    <div class="page-wrapper">
+        <section class="hero-section">
+            <div class="container">
+                <!-- Top Message -->
+                <div class="mail-header">
+                    <p class="mail-from">You've got mail from</p>
+                    <p class="couple-names-header">BELINDA & NICK</p>
+                </div>
 
-        <!-- Envelope Container -->
-        <div class="envelope-wrapper">
-            <img src="assets/Black C5 Straight fl.png" alt="Save the Date Envelope" class="envelope" id="envelope">
-            
-            <!-- Click to Open Text with Arrow -->
-            <div class="click-prompt">
-                <p class="click-text">Click to open</p>
+                <!-- Envelope Container -->
+                <div class="envelope-wrapper">
+                    <img src="assets/Black C5 Straight fl.png" alt="Save the Date Envelope" class="envelope" id="envelope">
+                    
+                    <!-- Click to Open Text with Arrow -->
+                    <div class="click-prompt">
+                        <p class="click-text">Click to open</p>
+                    </div>
+                </div>
+
+                <!-- Invite Content (Hidden initially) -->
+                <div class="invite-content" id="inviteContent">
+                    <button class="close-btn" id="closeBtn">&times;</button>
+                    
+                    <div class="invite-card">
+                        <img src="assets/STD6.png" alt="Save the Date" class="invite-image">
+                    </div>
+                </div>
+
+                <!-- Background overlay -->
+                <div class="overlay" id="overlay"></div>
+
+                <!-- Scroll Down Indicator -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <p class="scroll-text">Scroll down</p>
+                    <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12l7 7 7-7"/>
+                    </svg>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Invite Content (Hidden initially) -->
-        <div class="invite-content" id="inviteContent">
-            <button class="close-btn" id="closeBtn">&times;</button>
-            
-            <div class="invite-card">
-                <img src="assets/Belinda_invite.png" alt="Save the Date" class="invite-image">
+        <!-- Date and Countdown Section -->
+        <section class="date-countdown-section">
+            <div class="container">
+                <!-- Date Display -->
+                <div class="date-display">
+                    <p class="save-the-date-text">Wednesday 9th June 2027</p>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="days">0</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="hours">0</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="minutes">0</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="seconds">0</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Background overlay -->
-        <div class="overlay" id="overlay"></div>
+        <!-- Venue Intro Section -->
+        <section class="venue-intro-section">
+            <div class="container">
+                <p class="venue-location-text">Eastington Park, Gloucestershire</p>
+                <div class="venue-image-wrapper">
+                    <img src="assets/Venue.jpg" alt="Eastington Park venue" class="venue-intro-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Venue Section -->
+        <section class="venue-section">
+            <div class="container">
+                <div class="venue-content">
+                    <div class="venue-address">
+                        <p>Eastington Park</p>
+                        <p>Gloucestershire</p>
+                        <p>GL10 3RY</p>
+                    </div>
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d2470.0942662111493!2d-2.3136003!3d51.7495998!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x487109f746679a5d%3A0xbf145f5aa0e00283!2sEastington%20Park%2C%20Spring%20Hill%20GL10%203RY!3m2!1d51.7495998!2d-2.3114116!5e0!3m2!1sen!2suk!4v1772652670341!5m2!1sen!2suk"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <a href="https://www.eastingtonpark.co.uk/gallery/" class="venue-btn">View This Venue</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accommodation Section -->
+        <section class="accommodation-section">
+            <div class="container">
+                <div class="accommodation-content">
+                    <h2 class="accommodation-title">Places to Stay</h2>
+                    <button class="accommodation-btn">Explore Accommodation - No active Link yet</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Password Countdown Section -->
+        <section class="password-countdown-section">
+            <div class="container">
+                <p class="password-countdown-text">Countdown to when the invitation password will be sent</p>
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="inviteDays">0</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="inviteHours">0</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="inviteMinutes">0</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="inviteSeconds">0</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section class="rsvp-section">
+            <div class="container">
+                <div class="rsvp-content">
+                    <h2 class="rsvp-title">RSVP</h2>
+                    <div class="rsvp-locked" id="rsvpLocked">
+                        <input type="password" id="passwordInput" class="password-input" placeholder="Enter password to unlock">
+                        <button class="unlock-btn" id="unlockBtn">Unlock</button>
+                    </div>
+                    <div class="rsvp-unlocked" id="rsvpUnlocked" style="display: none;">
+                        <div class="qr-code-container">
+                            <img src="assets/Qr-code.png" alt="RSVP QR Code" class="qr-code">
+                            <a href="https://bridebook.com/uk/for/belinda-and-nick/rsvp" class="qr-link-btn">RSVP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="scripts/main.js"></script>
