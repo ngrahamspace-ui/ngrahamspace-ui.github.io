@@ -1,3 +1,30 @@
+// Initialize Tick.js Flip Countdowns (must be global for Tick.js to access)
+// Main countdown to wedding date
+function handleMainCountdown(tick) {
+    var counter = Tick.count.down("2027-06-09T00:00:00+00:00");
+    
+    counter.onupdate = function (value) {
+        tick.value = value;
+    };
+    
+    counter.onended = function () {
+        // Handle countdown end if needed
+    };
+}
+
+// Invite password countdown
+function handleInviteCountdown(tick) {
+    var counter = Tick.count.down("2026-07-09T00:00:00+00:00");
+    
+    counter.onupdate = function (value) {
+        tick.value = value;
+    };
+    
+    counter.onended = function () {
+        // Handle countdown end if needed
+    };
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const envelope = document.getElementById('envelope');
     const inviteContent = document.getElementById('inviteContent');
@@ -6,61 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.getElementById('closeBtn');
     const container = document.querySelector('.container');
     let envelopeOpened = false;
-
-    // Countdown Timer
-    function updateCountdown() {
-        const targetDate = new Date('June 9, 2027 00:00:00').getTime();
-        
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const difference = targetDate - now;
-            
-            if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-                
-                document.getElementById('days').textContent = days;
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-            } else {
-                clearInterval(timer);
-                document.getElementById('days').textContent = '0';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-            }
-        }, 1000);
-    }
-    updateCountdown();
-
-    // Countdown for invite password send date
-    function updateInviteCountdown() {
-        const sendDate = new Date('July 9, 2026 00:00:00').getTime();
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const diff = sendDate - now;
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                document.getElementById('inviteDays').textContent = days;
-                document.getElementById('inviteHours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('inviteMinutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('inviteSeconds').textContent = String(seconds).padStart(2, '0');
-            } else {
-                clearInterval(timer);
-                document.getElementById('inviteDays').textContent = '0';
-                document.getElementById('inviteHours').textContent = '00';
-                document.getElementById('inviteMinutes').textContent = '00';
-                document.getElementById('inviteSeconds').textContent = '00';
-            }
-        }, 1000);
-    }
-    updateInviteCountdown();
 
     // Scroll Down Indicator
     const scrollIndicator = document.getElementById('scrollIndicator');

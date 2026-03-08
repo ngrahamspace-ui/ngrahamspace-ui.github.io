@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Cormorant Garamond', serif;
     background: #ffffff;
@@ -11,6 +15,7 @@ body {
     margin: 0;
     padding: 0;
     position: relative;
+    overflow-x: hidden;
 }
 
 body::before {
@@ -35,7 +40,8 @@ body::before {
     align-items: center;
     z-index: 10;
     gap: 40px;
-    padding: 60px 20px;
+    padding: 40px 20px;
+    height: 100%;
 }
 
 .page-wrapper {
@@ -47,18 +53,34 @@ body::before {
 .hero-section {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background-image: url('../assets/WoodTable.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.8));
+    pointer-events: none;
+}
+
 
 .hero-section .container {
     height: 100%;
     justify-content: center;
-    padding: 60px 20px;
+    padding: 40px 20px;
 }
 
 /* Date Display */
@@ -112,16 +134,84 @@ body::before {
     text-transform: uppercase;
 }
 
+/* Tick.js Flip Clock Styling */
+.tick {
+    font-size: 1rem;
+    white-space: nowrap;
+    font-family: 'Playfair Display', serif;
+}
+
+.tick-flip, .tick-text-inline {
+    font-size: 3em;
+}
+
+.tick-label {
+    margin-top: 1em;
+    font-size: 0.75em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.tick-char {
+    width: 1.5em;
+}
+
+.tick-text-inline {
+    display: inline-block;
+    text-align: center;
+    min-width: 1em;
+    color: #d4af37;
+}
+
+.tick-text-inline + .tick-text-inline {
+    margin-left: -0.325em;
+}
+
+.tick-group {
+    margin: 0 0.75em;
+    text-align: center;
+}
+
+.tick-flip-panel {
+    color: #d4af37 !important;
+    background-color: #1a1a1a !important;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%) !important;
+    border: 2px solid #444 !important;
+    border-radius: 4px !important;
+}
+
+.tick-flip {
+    font-family: 'Playfair Display', serif !important;
+    border-radius: 4px !important;
+}
+
+.tick-flip-panel-text-wrapper {
+    line-height: 1 !important;
+}
+
+.tick-label {
+    color: #d4af37 !important;
+}
+
+/* Hide PQINA credits */
+.tick-credits {
+    display: none !important;
+}
+
 /* Mail Header */
 .mail-header {
     text-align: center;
     margin-bottom: 0;
+    position: relative;
+    z-index: 99;
 }
 
 .mail-from {
     font-family: 'Cormorant Garamond', serif;
     font-size: 20px;
-    color: #333;
+    color: white;
     font-style: italic;
     margin: 0 0 10px 0;
     letter-spacing: 1px;
@@ -129,19 +219,21 @@ body::before {
     overflow: hidden;
     white-space: nowrap;
     width: 0;
+    text-shadow: 0 0 3px black, 0 0 6px black;
 }
 
 .couple-names-header {
     font-family: 'Playfair Display', serif;
     font-size: 48px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: white;
     margin: 0;
     letter-spacing: 3px;
     animation: typewriter 1s steps(15, end) 1.2s forwards;
     overflow: hidden;
     white-space: nowrap;
     width: 0;
+    text-shadow: 0 0 3px black, 0 0 6px black;
 }
 
 @keyframes typewriter {
@@ -162,6 +254,26 @@ body::before {
     gap: 20px;
     overflow: visible;
     z-index: 10;
+    padding: 20px;
+    max-height: 90vh;
+    width: 100%;
+}
+
+.envelope-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('../assets/Floralframe.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1100px;
+    height: 1100px;
+    z-index: -1;
+    pointer-events: none;
+    translate: -25px -75px;
 }
 
 .envelope {
@@ -170,7 +282,7 @@ body::before {
     height: auto;
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
     position: relative;
-    cursor: pointer;
+    cursor: url('../assets/Goldletteropener.png') 5 5, auto;
     transition: width 0.6s ease, all 0.6s ease, box-shadow 0s;
     display: block;
 }
@@ -183,6 +295,7 @@ body::before {
 .envelope.open {
     box-shadow: none;
     max-width: 90vw;
+    cursor: pointer;
 }
 
 /* Click Prompt */
@@ -192,15 +305,18 @@ body::before {
     align-items: center;
     gap: 10px;
     animation: pulse 2s ease-in-out infinite;
+    position: relative;
+    z-index: 98;
 }
 
 .click-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
-    color: #666;
+    color: white;
     font-style: italic;
     margin: 0;
     letter-spacing: 1px;
+    text-shadow: 0 0 3px black, 0 0 6px black;
 }
 
 /* Scroll Down Indicator */
@@ -229,11 +345,12 @@ body::before {
 .scroll-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 14px;
-    color: #666;
+    color: white;
     font-style: italic;
     margin: 0;
     letter-spacing: 1px;
     text-transform: uppercase;
+    text-shadow: 0 0 3px black, 0 0 6px black;
 }
 
 .scroll-arrow {
@@ -495,6 +612,20 @@ body::before {
     border-radius: 0;
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 80px rgba(0, 0, 0, 0.6);
     transition: max-width 0.6s ease, max-height 0.6s ease;
+    position: relative;
+    z-index: 5;
+}
+
+.babybreath-decoration {
+    position: absolute;
+    width: auto;
+    height: auto;
+    max-width: 800px;
+    max-height: 800px;
+    display: block;
+    pointer-events: none;
+    z-index: 3;
+    transition: transform 0.3s ease;
 }
 
 .invite-content.active .invite-image {
@@ -653,18 +784,30 @@ body::before {
 /* Date and Countdown Section */
 .date-countdown-section {
     width: 100%;
-    padding: 60px 20px;
-    background-color: #ffffff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../assets/Refinedweddingring.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .date-countdown-section .container {
-    padding: 0;
+    padding: 40px 20px;
+    height: 100%;
 }
 
 /* Venue Intro Section */
 .venue-intro-section {
     width: 100%;
-    padding: 60px 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #ffffff;
     text-align: center;
 }
@@ -692,8 +835,13 @@ body::before {
 /* Venue Section */
 .venue-section {
     width: 100%;
-    padding: 80px 20px;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #f9f9f9;
+    padding: 40px 20px;
 }
 
 .venue-content {
@@ -714,13 +862,15 @@ body::before {
 }
 
 .map-container {
-    width: 100%;
-    max-width: 90vw;
-    height: 400px;
+    width: calc(100vw - 100px);
+    height: 50vh;
+    min-height: 250px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     margin: 0 auto;
+    margin-left: 50%;
+    margin-right: 50%;
 }
 
 #googleMap {
@@ -755,8 +905,15 @@ body::before {
 /* Accommodation Section */
 .accommodation-section {
     width: 100%;
-    padding: 80px 20px;
-    background-color: #ffffff;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../assets/Enhancedfloralarray.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .accommodation-content {
@@ -773,9 +930,13 @@ body::before {
     font-family: 'Playfair Display', serif;
     font-size: 48px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: white;
     margin: 0;
     letter-spacing: 2px;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.6),
+        0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .accommodation-btn {
@@ -803,15 +964,25 @@ body::before {
 /* RSVP Section */
 .rsvp-section {
     width: 100%;
-    padding: 80px 20px;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #f9f9f9;
+    padding: 40px 20px;
 }
 /* Password Countdown Section */
 .password-countdown-section {
     width: 100%;
-    padding: 60px 20px;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #ffffff;
     text-align: center;
+    padding: 40px 20px;
 }
 
 .password-countdown-text {
