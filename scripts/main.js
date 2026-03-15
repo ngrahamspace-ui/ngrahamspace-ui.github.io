@@ -151,11 +151,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ========== END SCROLL LOCKING FUNCTIONALITY ==========
 
-    // Scroll Down Indicator
+    // Scroll Down Indicator & Mobile scroll detection
     const scrollIndicator = document.getElementById('scrollIndicator');
     let hasScrolled = false;
+    let lastScrollY = 0;
 
     window.addEventListener('scroll', function() {
+        const currentScrollY = window.scrollY;
+        
+        // Detect scroll direction for mobile
+        if (currentScrollY > lastScrollY) {
+            // Scrolling down - close envelope if open
+            if (envelopeOpened) {
+                closeEnvelope();
+            }
+        }
+        lastScrollY = currentScrollY;
+
+        // Scroll indicator logic
         if (window.scrollY > 100 && !hasScrolled) {
             scrollIndicator.classList.add('hidden');
             hasScrolled = true;

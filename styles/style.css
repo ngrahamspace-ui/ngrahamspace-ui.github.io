@@ -95,9 +95,10 @@ body::before {
     font-family: 'Playfair Display', serif;
     font-size: 42px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: white;
     margin: 0;
     letter-spacing: 2px;
+    text-shadow: 0 0 3px black, 0 0 6px black;
 }
 
 /* Countdown Timer */
@@ -176,10 +177,10 @@ body::before {
 }
 
 .tick-flip-panel {
-    color: #d4af37 !important;
-    background-color: #1a1a1a !important;
-    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%) !important;
-    border: 2px solid #444 !important;
+    color: #1a1a1a !important;
+    background-color: #ffffff00 !important;
+    background: linear-gradient(135deg, #faeedb 0%, #f5f5f5 100%) !important;
+    border: 2px solid #d4af37 !important;
     border-radius: 4px !important;
 }
 
@@ -211,7 +212,7 @@ body::before {
 
 .mail-from {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 30px;
     color: white;
     font-style: italic;
     margin: 0 0 10px 0;
@@ -1165,5 +1166,33 @@ body::before {
 
     .click-text {
         font-size: 14px;
+    }
+
+    /* Mobile tick/countdown adjustments */
+    .tick {
+        white-space: normal;
+        font-size: 0.7rem;
+    }
+
+    .tick-flip, .tick-text-inline {
+        font-size: 3em;
+    }
+
+    .tick-group {
+        margin: 0 0.5em !important;
+    }
+
+    .tick-label {
+        margin-top: 0.5em;
+        font-size: 0.6em;
+    }
+
+    .date-countdown-section .container {
+        padding: 20px 10px;
+        gap: 20px;
+    }
+
+    .save-the-date-text {
+        font-size: 28px;
     }
 }
