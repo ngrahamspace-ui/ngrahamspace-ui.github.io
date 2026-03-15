@@ -37,7 +37,76 @@ document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('overlay');
     const closeBtn = document.getElementById('closeBtn');
     const container = document.querySelector('.container');
+    const particleContainer = document.getElementById('particleContainer');
     let envelopeOpened = false;
+
+    // ========== PARTICLE EFFECT INITIALIZATION ==========
+    // Initialize particle effect on page load
+    function initializeParticleEffect() {
+        if (!particleContainer) return;
+        
+        // Set perspective on container
+        gsap.set(particleContainer, { perspective: 600 });
+        
+        const total = 30;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        
+        // Create and animate particles
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('div');
+            gsap.set(dot, {
+                attr: { class: 'dot' },
+                x: Math.random() * w,
+                y: Math.random() * (-200) - 150,
+                z: Math.random() * 400 - 200
+            });
+            particleContainer.appendChild(dot);
+            animateParticle(dot, h, w);
+        }
+    }
+
+    // Animate individual particle
+    function animateParticle(elm, h, w) {
+        // Falling animation
+        gsap.to(elm, {
+            y: h + 100,
+            duration: getRandomNumber(6, 15),
+            ease: 'none',
+            repeat: -1,
+            delay: getRandomNumber(-15, 0)
+        });
+        
+        // Horizontal drift
+        gsap.to(elm, {
+            x: '+=100',
+            rotationZ: getRandomNumber(0, 180),
+            duration: getRandomNumber(4, 8),
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+        
+        // Rotation
+        gsap.to(elm, {
+            rotationX: getRandomNumber(0, 360),
+            rotationY: getRandomNumber(0, 360),
+            duration: getRandomNumber(2, 8),
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: getRandomNumber(-5, 0)
+        });
+    }
+
+    // Helper function for random numbers
+    function getRandomNumber(min, max) {
+        return min + Math.random() * (max - min);
+    }
+
+    // Initialize particles
+    initializeParticleEffect();
+    // ========== END PARTICLE EFFECT INITIALIZATION ==========
 
     // Function to close envelope (used by scroll and other interactions)
     function closeEnvelope() {
@@ -49,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.remove('active');
         container.classList.remove('invite-open');
         resizeObserver.unobserve(inviteCard);
+        particleContainer.style.opacity = '0';
+        particleContainer.style.pointerEvents = 'none';
         envelopeOpened = false;
     }
 
@@ -208,6 +279,10 @@ document.addEventListener('DOMContentLoaded', function() {
         overlay.classList.add('active');
         container.classList.add('invite-open');
         envelopeOpened = true;
+        
+        // Show particle effect
+        particleContainer.style.opacity = '1';
+        particleContainer.style.pointerEvents = 'auto';
         
         // Start observing invite card size changes
         resizeObserver.observe(inviteCard);
