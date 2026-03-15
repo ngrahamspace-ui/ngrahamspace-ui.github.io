@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         gsap.set(particleContainer, { perspective: 600 });
         
         const total = 30;
-        const w = window.innerWidth;
+        const containerWidth = 600; // Centered container width
         const h = window.innerHeight;
         
         // Create and animate particles
@@ -57,17 +57,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const dot = document.createElement('div');
             gsap.set(dot, {
                 attr: { class: 'dot' },
-                x: Math.random() * w,
+                x: Math.random() * containerWidth - containerWidth / 2,
                 y: Math.random() * (-200) - 150,
                 z: Math.random() * 400 - 200
             });
             particleContainer.appendChild(dot);
-            animateParticle(dot, h, w);
+            animateParticle(dot, h, containerWidth);
         }
     }
 
     // Animate individual particle
-    function animateParticle(elm, h, w) {
+    function animateParticle(elm, h, containerWidth) {
         // Falling animation
         gsap.to(elm, {
             y: h + 100,
@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
             delay: getRandomNumber(-15, 0)
         });
         
-        // Horizontal drift
+        // Horizontal drift (limited to container)
         gsap.to(elm, {
-            x: '+=100',
+            x: '+=50',
             rotationZ: getRandomNumber(0, 180),
             duration: getRandomNumber(4, 8),
             repeat: -1,

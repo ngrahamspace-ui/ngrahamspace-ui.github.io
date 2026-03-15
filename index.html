@@ -66,8 +66,8 @@
                     <p class="save-the-date-text">Wednesday 9th June 2027</p>
                 </div>
 
-                <!-- Countdown Timer (Flip Clock) -->
-                <div class="tick" data-did-init="handleMainCountdown">
+                <!-- Countdown Timer (Flip Clock) - Days Only -->
+                <div class="tick tick-days-only" data-did-init="handleMainCountdown">
                     <div data-repeat="true" data-layout="horizontal fit" data-transform="preset(d, h, m, s)">
                         <div class="tick-group">
                             <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
@@ -77,6 +77,20 @@
                         </div>
                     </div>
                 </div>
+                
+
+                <!-- Countdown Timer (Flip Clock) - Hours, Minutes, Seconds Only -->
+                <div class="tick tick-hms-only" data-did-init="handleMainCountdown">
+                    <div data-repeat="true" data-layout="horizontal fit" data-transform="preset(d, h, m, s)">
+                        <div class="tick-group">
+                            <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
+                                <span data-view="flip"></span>
+                            </div>
+                            <span data-key="label" data-view="text" class="tick-label"></span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </section>
 
