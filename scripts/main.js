@@ -34,6 +34,102 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.container');
     let envelopeOpened = false;
 
+    // ========== SCROLL LOCKING FUNCTIONALITY ==========
+    let currentSection = 0;
+    let isSnapping = false;
+    const sections = document.querySelectorAll('[data-section]');
+    const totalSections = sections.length;
+    const snapDuration = 800; // milliseconds for smooth snap
+
+    function snapToSection(sectionIndex) {
+        if (isSnapping || sectionIndex < 0 || sectionIndex >= totalSections) return;
+        
+        isSnapping = true;
+        currentSection = sectionIndex;
+        const targetSection = sections[sectionIndex];
+        const targetScroll = targetSection.offsetTop;
+        const startScroll = window.scrollY;
+        const distance = targetScroll - startScroll;
+        const startTime = performance.now();
+
+        function animate(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / snapDuration, 1);
+            
+            // Easing function for smooth animation
+            const easeProgress = progress < 0.5 
+                ? 2 * progress * progress 
+                : -1 + (4 - 2 * progress) * progress;
+            
+            window.scrollTo(0, startScroll + distance * easeProgress);
+
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                isSnapping = false;
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    // Handle wheel events for scroll locking
+    let wheelTimeout;
+    let lastWheelDirection = 0;
+
+    document.addEventListener('wheel', function(e) {
+        if (isSnapping) {
+            e.preventDefault();
+            return;
+        }
+
+        clearTimeout(wheelTimeout);
+
+        // Determine scroll direction
+        const direction = e.deltaY > 0 ? 1 : -1; // 1 for down, -1 for up
+        lastWheelDirection = direction;
+
+        // Calculate which section to snap to
+        if (direction > 0) {
+            // Scrolling down
+            if (currentSection < totalSections - 1) {
+                snapToSection(currentSection + 1);
+            }
+        } else {
+            // Scrolling up
+            if (currentSection > 0) {
+                snapToSection(currentSection - 1);
+            }
+        }
+
+        e.preventDefault();
+
+        // Reset after a short delay to ensure snap completes
+        wheelTimeout = setTimeout(() => {
+            lastWheelDirection = 0;
+        }, snapDuration);
+
+    }, { passive: false });
+
+    // Handle keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (isSnapping) return;
+
+        if (e.key === 'ArrowDown' || e.key === ' ') {
+            if (currentSection < totalSections - 1) {
+                snapToSection(currentSection + 1);
+                e.preventDefault();
+            }
+        } else if (e.key === 'ArrowUp') {
+            if (currentSection > 0) {
+                snapToSection(currentSection - 1);
+                e.preventDefault();
+            }
+        }
+    });
+
+    // ========== END SCROLL LOCKING FUNCTIONALITY ==========
+
     // Scroll Down Indicator
     const scrollIndicator = document.getElementById('scrollIndicator');
     let hasScrolled = false;

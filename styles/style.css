@@ -5,7 +5,8 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+    overflow-y: scroll;
 }
 
 body {
@@ -59,7 +60,7 @@ body::before {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    /* background-image: url('../assets/WoodTable.jpg'); */
+    background-image: url('../assets/TopBackground.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -264,8 +265,7 @@ body::before {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-image: url('../assets/Floralframe.png');
+    /* background-image: url('../assets/Floralframe.png'); */
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -620,8 +620,8 @@ body::before {
     position: absolute;
     width: auto;
     height: auto;
-    max-width: 800px;
-    max-height: 800px;
+    max-width: 600px;
+    max-height: 600px;
     display: block;
     pointer-events: none;
     z-index: 3;
