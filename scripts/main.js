@@ -25,6 +25,11 @@ function handleInviteCountdown(tick) {
     };
 }
 
+// Prevent browser from restoring scroll position on refresh
+if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const envelope = document.getElementById('envelope');
     const inviteContent = document.getElementById('inviteContent');
