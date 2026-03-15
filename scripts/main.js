@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const inviteContent = document.getElementById('inviteContent');
     const inviteCard = document.querySelector('.invite-card');
     const overlay = document.getElementById('overlay');
-    const closeBtn = document.getElementById('closeBtn');
     const container = document.querySelector('.container');
     const particleContainer = document.getElementById('particleContainer');
     let envelopeOpened = false;
@@ -295,12 +294,6 @@ document.addEventListener('DOMContentLoaded', function() {
     envelope.addEventListener('click', function(e) {
         e.stopPropagation();
         openEnvelope();
-    });
-
-    // Close invite
-    closeBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        closeEnvelope();
     });
 
     // Close on overlay click

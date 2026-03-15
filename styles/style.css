@@ -814,23 +814,30 @@ body::before {
     font-size: 32px;
     color: #666;
     cursor: pointer;
-    z-index: 35;
-    width: 40px;
-    height: 40px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    min-width: 50px;
+    min-height: 50px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .invite-content.active .close-btn {
     display: flex;
 }
 
-.close-btn:hover {
+.close-btn:hover,
+.close-btn:focus {
     background-color: #d4af37;
     color: white;
     transform: rotate(90deg);
+    outline: none;
 }
 
 /* Date and Countdown Section */
@@ -1216,6 +1223,18 @@ body::before {
 
     .click-text {
         font-size: 14px;
+    }
+
+    /* Close button mobile adjustments */
+    .close-btn {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
+        font-size: 36px;
+        top: 15px;
+        right: 15px;
+        z-index: 100;
     }
 
     /* Mobile tick/countdown adjustments */
