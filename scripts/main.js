@@ -163,11 +163,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Helper function to change envelope image with proper browser cache handling
+    function changeEnvelopeImage(imagePath) {
+        // Force browser to reload image by adding cache buster
+        const cacheBuster = '?t=' + new Date().getTime();
+        envelope.src = imagePath + cacheBuster;
+    }
+
     // Function to open envelope
     function openEnvelope() {
         if (envelopeOpened) return;
         envelope.classList.add('open');
-        envelope.src = 'assets/black envelope open.png';
+        changeEnvelopeImage('assets/black envelope open.png');
         inviteContent.classList.add('active');
         container.classList.add('invite-open');
         envelopeOpened = true;
@@ -189,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
     closeBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         envelope.classList.remove('open');
-        envelope.src = 'assets/Black C5 Straight fl.png';
+        changeEnvelopeImage('assets/Black C5 Straight fl.png');
         envelope.style.width = '';
         inviteContent.classList.remove('active');
         container.classList.remove('invite-open');
@@ -201,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.addEventListener('click', function(e) {
         if (e.target === overlay) {
             envelope.classList.remove('open');
-            envelope.src = 'assets/Black C5 Straight fl.png';
+            changeEnvelopeImage('assets/Black C5 Straight fl.png');
             envelope.style.width = '';
             inviteContent.classList.remove('active');
             container.classList.remove('invite-open');
@@ -214,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && inviteContent.classList.contains('active')) {
             envelope.classList.remove('open');
-            envelope.src = 'assets/Black C5 Straight fl.png';
+            changeEnvelopeImage('assets/Black C5 Straight fl.png');
             envelope.style.width = '';
             inviteContent.classList.remove('active');
             container.classList.remove('invite-open');
