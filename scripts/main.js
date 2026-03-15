@@ -176,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
         envelope.classList.add('open');
         changeEnvelopeImage('assets/black envelope open.png');
         inviteContent.classList.add('active');
+        overlay.classList.add('active');
         container.classList.add('invite-open');
         envelopeOpened = true;
         
@@ -199,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
         changeEnvelopeImage('assets/Black C5 Straight fl.png');
         envelope.style.width = '';
         inviteContent.classList.remove('active');
+        overlay.classList.remove('active');
         container.classList.remove('invite-open');
         resizeObserver.unobserve(inviteCard);
         envelopeOpened = false;
@@ -211,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
             changeEnvelopeImage('assets/Black C5 Straight fl.png');
             envelope.style.width = '';
             inviteContent.classList.remove('active');
+            overlay.classList.remove('active');
             container.classList.remove('invite-open');
             resizeObserver.unobserve(inviteCard);
             envelopeOpened = false;
@@ -224,6 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
             changeEnvelopeImage('assets/Black C5 Straight fl.png');
             envelope.style.width = '';
             inviteContent.classList.remove('active');
+            overlay.classList.remove('active');
             container.classList.remove('invite-open');
             resizeObserver.unobserve(inviteCard);
             envelopeOpened = false;

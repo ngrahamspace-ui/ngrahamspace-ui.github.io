@@ -556,8 +556,9 @@ body::before {
 }
 
 .overlay.active {
-    background-color: transparent;
-    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    pointer-events: auto;
     pointer-events: none;
 }
 
