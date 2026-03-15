@@ -39,6 +39,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('.container');
     let envelopeOpened = false;
 
+    // Function to close envelope (used by scroll and other interactions)
+    function closeEnvelope() {
+        if (!envelopeOpened) return;
+        envelope.classList.remove('open');
+        changeEnvelopeImage('assets/Black C5 Straight fl.png');
+        envelope.style.width = '';
+        inviteContent.classList.remove('active');
+        overlay.classList.remove('active');
+        container.classList.remove('invite-open');
+        resizeObserver.unobserve(inviteCard);
+        envelopeOpened = false;
+    }
+
     // ========== SCROLL LOCKING FUNCTIONALITY ==========
     let currentSection = 0;
     let isSnapping = false;
@@ -96,7 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Calculate which section to snap to
         if (direction > 0) {
-            // Scrolling down
+            // Scrolling down - close envelope if open
+            if (envelopeOpened) {
+                closeEnvelope();
+            }
             if (currentSection < totalSections - 1) {
                 snapToSection(currentSection + 1);
             }
@@ -196,41 +212,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close invite
     closeBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        envelope.classList.remove('open');
-        changeEnvelopeImage('assets/Black C5 Straight fl.png');
-        envelope.style.width = '';
-        inviteContent.classList.remove('active');
-        overlay.classList.remove('active');
-        container.classList.remove('invite-open');
-        resizeObserver.unobserve(inviteCard);
-        envelopeOpened = false;
+        closeEnvelope();
     });
 
     // Close on overlay click
     overlay.addEventListener('click', function(e) {
         if (e.target === overlay) {
-            envelope.classList.remove('open');
-            changeEnvelopeImage('assets/Black C5 Straight fl.png');
-            envelope.style.width = '';
-            inviteContent.classList.remove('active');
-            overlay.classList.remove('active');
-            container.classList.remove('invite-open');
-            resizeObserver.unobserve(inviteCard);
-            envelopeOpened = false;
+            closeEnvelope();
         }
     });
 
     // Close on Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && inviteContent.classList.contains('active')) {
-            envelope.classList.remove('open');
-            changeEnvelopeImage('assets/Black C5 Straight fl.png');
-            envelope.style.width = '';
-            inviteContent.classList.remove('active');
-            overlay.classList.remove('active');
-            container.classList.remove('invite-open');
-            resizeObserver.unobserve(inviteCard);
-            envelopeOpened = false;
+            closeEnvelope();
         }
     });
 
