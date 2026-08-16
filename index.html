@@ -3,178 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save the Date - Belinda & Nick</title>
-    <link rel="stylesheet" href="styles/style.css?v=1.0">
-    <link rel="stylesheet" href="flip/flip.min.css?v=1.0" />
-    <link rel="stylesheet" href="assets/flip-master/tick/tick.core.css?v=1.0">
-    <link rel="stylesheet" href="assets/flip-master/dist/tick.view.flip.min.css?v=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:ital@0;1&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIrmeT7YnJz5-X5HKkbSnfArZ_WfK_XDI&v=weekly&callback=initMap" async defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <meta name="description" content="The wedding of Nick and Belinda at Eastington Park, Gloucestershire, on 9 June 2027.">
+    <meta name="theme-color" content="#f7f3ec">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nick &amp; Belinda | 9 June 2027">
+    <meta property="og:description" content="Join us at Eastington Park, Gloucestershire, as we celebrate our wedding.">
+    <meta property="og:url" content="https://ngrahamspace-ui.github.io/">
+    <meta property="og:image" content="https://ngrahamspace-ui.github.io/assets/wedding-social-preview.jpg">
+    <meta property="og:image:alt" content="Nick and Belinda in a rose garden with their wedding date and venue">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nick &amp; Belinda | 9 June 2027">
+    <meta name="twitter:description" content="Join us at Eastington Park, Gloucestershire, as we celebrate our wedding.">
+    <meta name="twitter:image" content="https://ngrahamspace-ui.github.io/assets/wedding-social-preview.jpg">
+    <title>Nick &amp; Belinda | 9 June 2027</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css?v=2.0">
 </head>
 <body>
-    <div class="page-wrapper">
-        <section class="hero-section" data-section="0">
-            <div class="container">
-                <!-- Top Message -->
-                <div class="mail-header">
-                    <p class="mail-from">You've got mail from</p>
-                    <p class="couple-names-header">BELINDA & NICK</p>
-                </div>
+    <a class="skip-link" href="#main-content">Skip to the invitation</a>
 
-                <!-- Envelope Container -->
-                <div class="envelope-wrapper">
-                    <img src="assets/Black C5 Straight fl.png" alt="Save the Date Envelope" class="envelope" id="envelope">
-                    
-                    <!-- Click to Open Text with Arrow -->
-                    <div class="click-prompt">
-                        <p class="click-text">Click to open</p>
+    <header class="site-header" id="siteHeader">
+        <a class="monogram" href="#home" aria-label="Nick and Belinda, back to top">N <span>&amp;</span> B</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">
+            <span class="menu-toggle__label">Menu</span>
+            <span class="menu-toggle__lines" aria-hidden="true"></span>
+        </button>
+        <nav class="site-nav" id="siteNav" aria-label="Wedding website">
+            <a href="#home">Home</a>
+            <a href="#our-story">Our story</a>
+            <a href="#the-day">The day</a>
+            <a href="#attire">Attire</a>
+            <a class="nav-rsvp" href="#rsvp">RSVP</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <div class="hero__image" role="img" aria-label="Nick and Belinda together beneath a rose-covered arch"></div>
+            <div class="hero__shade"></div>
+            <div class="hero__content">
+                <p class="eyebrow hero__eyebrow">Together with their families</p>
+                <h1 id="hero-title"><span>Nick</span><i>&amp;</i><span>Belinda</span></h1>
+                <p class="hero__invitation">joyfully invite you to celebrate their wedding</p>
+                <div class="hero__details" aria-label="Wedding date and location">
+                    <span>Wednesday, 9 June 2027</span>
+                    <span aria-hidden="true">•</span>
+                    <span>Eastington Park, Gloucestershire</span>
+                </div>
+                <a class="button button--light" href="#rsvp">Respond to our invitation</a>
+            </div>
+            <a class="scroll-cue" href="#our-story" aria-label="Continue to our story">
+                <span>Our story</span>
+                <span class="scroll-cue__line" aria-hidden="true"></span>
+            </a>
+        </section>
+
+        <section class="section story" id="our-story" aria-labelledby="story-title">
+            <div class="section-heading reveal">
+                <p class="eyebrow">A few chapters of us</p>
+                <h2 id="story-title">Our Story</h2>
+                <p>From the day we met to the day we said “yes”, these are the moments that brought us here.</p>
+            </div>
+
+            <div class="story-list">
+                <article class="story-chapter reveal">
+                    <figure class="story-chapter__image">
+                        <img src="assets/early-days-collage.jpg" alt="Four early photographs of Nick and Belinda during their university years" loading="lazy">
+                        <figcaption>Our early days</figcaption>
+                    </figure>
+                    <div class="story-chapter__copy">
+                        <span class="chapter-number">01</span>
+                        <p class="eyebrow">The beginning</p>
+                        <h3>How We Met</h3>
+                        <p> In 2013, Nick was studying in Birmingham and Belinda in Sheffield when, during their second year at university, a birthday party brought them together. Nick happened to live with one of Belinda’s old school friends, who invited her along. They exchanged numbers that evening and spent the following weeks talking constantly over Skype.</p>
+                        <p>For the next two years, they took turns making the coach journey every other weekend between Birmingham and Sheffield. Every reunion at the station brought the same rush of butterflies.</p>
                     </div>
-                </div>
+                </article>
 
-                <!-- Invite Content (Hidden initially) -->
-                <div class="invite-content" id="inviteContent">
-                    <div class="invite-card">
-                        <img src="assets/Babybreath.png" alt="Baby breath decoration" class="babybreath-decoration" style="transform: scaleX(-1) translate(150px, -200px) rotate(-45deg);">
-                        <img src="assets/Babybreath.png" alt="Baby breath decoration" class="babybreath-decoration" style="transform: scaleX(1) translate(150px, -300px) rotate(0deg);">
-                        <img src="assets/STDinvite2.png" alt="Save the Date" class="invite-image">
+                <article class="story-chapter story-chapter--reverse reveal">
+                    <figure class="story-chapter__image story-chapter__image--tall">
+                        <img src="assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-34.jpg" alt="Nick and Belinda walking together beside a water-lily pond" loading="lazy">
+                        <figcaption>Making memories</figcaption>
+                    </figure>
+                    <div class="story-chapter__copy">
+                        <span class="chapter-number">02</span>
+                        <p class="eyebrow">Along the way</p>
+                        <h3>Our Adventures</h3>
+                        <p>Their first holiday abroad together was Belgium, where Belinda’s fear of heights faced an early test in the glass lift to the top of the Atomium. Next came Paphos, their first beach holiday. It was the beginning of a lasting love for Cyprus, now a favourite destination for its food and boat trips.</p>
+                        <p>After graduating, they began a new adventure closer to home when they moved into their first flat together in Bracknell. Since then, they have climbed Snowdon and travelled to Tenerife and Santa Cruz, Madeira, Ayia Napa, Paris, Berlin, Gran Canaria, Thailand, Turkey, Amsterdam and Cannes. There are still plenty more places they would love to explore together.</p>
                     </div>
-                </div>
+                </article>
 
-                <!-- Background overlay -->
-                <div class="overlay" id="overlay"></div>
-
-                <!-- Particle Effect Container -->
-                <div id="particleContainer" class="particle-container"></div>
-
-                <!-- Scroll Down Indicator -->
-                <div class="scroll-indicator" id="scrollIndicator">
-                    <p class="scroll-text">Scroll down</p>
-                    <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 5v14M5 12l7 7 7-7"/>
-                    </svg>
-                </div>
+                <article class="story-chapter reveal">
+                    <figure class="story-chapter__image story-chapter__image--proposal">
+                        <img src="assets/proposal-engagement-centered.jpg" alt="Nick and Belinda smiling together as Belinda shows her engagement ring" loading="lazy">
+                        <figcaption>The moment we said yes</figcaption>
+                    </figure>
+                    <div class="story-chapter__copy">
+                        <span class="chapter-number">03</span>
+                        <p class="eyebrow">The easiest yes</p>
+                        <h3>The Proposal</h3>
+                        <p>On a 15-day trip to Thailand, their most unforgettable adventure yet, Nick carried a ring hidden in his backpack while he waited for the right moment. It travelled with them to the Full Moon Party, Koh Samui, the floating bungalows of Khao Sok, an elephant sanctuary, the floating and railway markets, and Ao Nang.</p>
+                        <p>Near the end of the holiday, they returned to Bangkok. While walking through the crowded city, they found a peaceful garden tucked away in a business park. The noise disappeared and there was not another person around. Beside a large pond filled with hundreds of koi, they walked out along a pier. That was the moment Nick took the ring from his backpack, got down on one knee and asked Belinda to marry him.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Date and Countdown Section -->
-        <section class="date-countdown-section" data-section="1">
-            <div class="container">
-                <!-- Date Display -->
-                <div class="date-display">
-                    <p class="save-the-date-text">Wednesday 9th June 2027</p>
+        <section class="countdown" aria-labelledby="countdown-title">
+            <div class="countdown__image" role="img" aria-label="Nick and Belinda dancing beneath a rose arch"></div>
+            <div class="countdown__overlay"></div>
+            <div class="countdown__content reveal">
+                <p class="eyebrow">Until we say “I do”</p>
+                <h2 id="countdown-title">The big day is getting closer</h2>
+                <div class="countdown-grid" role="timer" aria-live="off" aria-label="Countdown to the wedding">
+                    <div><strong id="countdownDays">000</strong><span>Days</span></div>
+                    <div><strong id="countdownHours">00</strong><span>Hours</span></div>
+                    <div><strong id="countdownMinutes">00</strong><span>Minutes</span></div>
+                    <div><strong id="countdownSeconds">00</strong><span>Seconds</span></div>
+                </div>
+                <p class="countdown__date">9 · 06 · 2027</p>
+            </div>
+        </section>
+
+        <section class="section wedding-day" id="the-day" aria-labelledby="day-title">
+            <div class="section-heading reveal">
+                <p class="eyebrow">Join us in Gloucestershire</p>
+                <h2 id="day-title">The Wedding Day</h2>
+                <p>The ceremony will take place at St Michael &amp; All Angels Church, followed by the reception and evening celebrations at Eastington Park.</p>
+            </div>
+
+            <div class="venue-card reveal">
+                <div class="venue-card__image">
+                    <img src="assets/Venue-web.jpg" alt="Aerial view of Eastington Park and its grounds" loading="lazy">
+                </div>
+                <div class="venue-card__copy">
+                    <p class="eyebrow">The venue</p>
+                    <h3>Eastington Park</h3>
+                    <address>Spring Hill<br>Eastington, Stonehouse<br>Gloucestershire GL10 3RY</address>
+                    <div class="button-row">
+                        <a class="button button--dark" href="https://www.google.com/maps/search/?api=1&amp;query=Eastington+Park+Spring+Hill+Stonehouse+GL10+3RY" target="_blank" rel="noopener">Open in Maps</a>
+                        <a class="text-link" href="https://www.eastingtonpark.co.uk/" target="_blank" rel="noopener">Visit the venue <span aria-hidden="true">↗</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-schedule reveal" aria-label="Wedding day schedule">
+                <div class="schedule-intro">
+                    <p class="eyebrow">Order of the day</p>
+                    <h3>Celebrate with us</h3>
+                    <p>The church is around half a mile from Eastington Park, and guests can walk between the two. Exact timings will be added once the final schedule is confirmed.</p>
+                </div>
+                <ol class="timeline">
+                    <li><time>Time TBC</time><div><h4>Guest arrival</h4><p>Please meet us at St Michael &amp; All Angels Church.</p></div></li>
+                    <li><time>Time TBC</time><div><h4>The ceremony</h4><p>Join us at the church as we exchange our vows.</p></div></li>
+                    <li><time>Afterwards</time><div><h4>Walk to Eastington Park</h4><p>The venue is around half a mile from the church.</p></div></li>
+                    <li><time>Time TBC</time><div><h4>Cocktail hour</h4><p>Drinks, canapés and photographs.</p></div></li>
+                    <li><time>Time TBC</time><div><h4>Reception &amp; dinner</h4><p>Dinner, speeches and an evening of celebration.</p></div></li>
+                </ol>
+            </div>
+
+            <aside class="travel-note reveal" aria-labelledby="travel-title">
+                <div>
+                    <p class="eyebrow">Good to know</p>
+                    <h3 id="travel-title">Travel &amp; accommodation</h3>
+                </div>
+                <p>Recommendations for getting to Eastington Park and places to stay nearby will be added here.</p>
+                <span class="status-pill">Details to follow</span>
+            </aside>
+        </section>
+
+        <section class="attire" id="attire" aria-labelledby="attire-title">
+            <div class="attire__ornament" aria-hidden="true">N <span>&amp;</span> B</div>
+            <div class="attire__content reveal">
+                <p class="eyebrow">What to wear</p>
+                <h2 id="attire-title">Attire</h2>
+                <span class="status-pill status-pill--light">To be confirmed</span>
+                <p>We’ll share the dress code and any helpful guidance here as soon as the details are decided.</p>
+            </div>
+        </section>
+
+        <section class="section rsvp" id="rsvp" aria-labelledby="rsvp-title">
+            <div class="rsvp-layout">
+                <div class="rsvp-intro reveal">
+                    <div class="rsvp-intro__copy">
+                        <p class="eyebrow">We hope you can join us</p>
+                        <h2 id="rsvp-title">Kindly Respond</h2>
+                        <p>Please send one response per invitation. Your reply will be emailed directly to Nick and Belinda.</p>
+                        <p class="rsvp-deadline">RSVP deadline · <strong>To be confirmed</strong></p>
+                    </div>
+                    <div class="rsvp-intro__image">
+                        <img src="assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-109.jpg" alt="Nick and Belinda raising their drinks together at a café" loading="lazy">
+                    </div>
                 </div>
 
-                <!-- Countdown Timer (Flip Clock) - Days Only -->
-                <div class="tick tick-days-only" data-did-init="handleMainCountdown">
-                    <div data-repeat="true" data-layout="horizontal fit" data-transform="preset(d, h, m, s)">
-                        <div class="tick-group">
-                            <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
-                                <span data-view="flip"></span>
-                            </div>
-                            <span data-key="label" data-view="text" class="tick-label"></span>
+                <form class="rsvp-form reveal" id="rsvpForm" action="https://formsubmit.co/ajax/n.graham.space@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Wedding RSVP: Nick &amp; Belinda">
+                    <input type="hidden" name="_template" value="table">
+                    <div class="honeypot" aria-hidden="true">
+                        <label for="website">Leave this field empty</label>
+                        <input id="website" type="text" name="_honey" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="fullName">Full name <span aria-hidden="true">*</span></label>
+                        <input id="fullName" name="Full name" type="text" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="emailAddress">Email address <span aria-hidden="true">*</span></label>
+                        <input id="emailAddress" name="Email address" type="email" autocomplete="email" inputmode="email" required>
+                    </div>
+
+                    <fieldset class="attendance-field">
+                        <legend>Will you attend? <span aria-hidden="true">*</span></legend>
+                        <div class="attendance-options">
+                            <label>
+                                <input type="radio" name="Attendance" value="Joyfully accept" required>
+                                <span><strong>Joyfully accept</strong><small>We’ll be there</small></span>
+                            </label>
+                            <label>
+                                <input type="radio" name="Attendance" value="Regretfully decline" required>
+                                <span><strong>Regretfully decline</strong><small>We’ll celebrate from afar</small></span>
+                            </label>
                         </div>
-                    </div>
-                </div>
-                
+                    </fieldset>
 
-                <!-- Countdown Timer (Flip Clock) - Hours, Minutes, Seconds Only -->
-                <div class="tick tick-hms-only" data-did-init="handleMainCountdown">
-                    <div data-repeat="true" data-layout="horizontal fit" data-transform="preset(d, h, m, s)">
-                        <div class="tick-group">
-                            <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
-                                <span data-view="flip"></span>
-                            </div>
-                            <span data-key="label" data-view="text" class="tick-label"></span>
-                        </div>
+                    <div class="form-field">
+                        <label for="note">Note <span>Optional</span></label>
+                        <textarea id="note" name="Note" rows="4" placeholder="Dietary, accessibility or other helpful information"></textarea>
                     </div>
-                </div>
-                
+
+                    <button class="button button--dark form-submit" type="submit">
+                        <span>Send response</span>
+                        <span aria-hidden="true">→</span>
+                    </button>
+                    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                </form>
             </div>
         </section>
+    </main>
 
-        <!-- COMMENTED OUT - Venue Intro Section to end of page
-        <section class="venue-intro-section">
-            <div class="container">
-                <p class="venue-location-text">Eastington Park, Gloucestershire</p>
-                <div class="venue-image-wrapper">
-                    <img src="assets/Venue.jpg" alt="Eastington Park venue" class="venue-intro-image">
-                </div>
+    <footer class="site-footer">
+        <div class="footer-monogram">N <span>&amp;</span> B</div>
+        <p>Wednesday, 9 June 2027 · Eastington Park</p>
+        <button class="keepsake-link" type="button" id="openKeepsake">
+            <span>A little keepsake</span>
+            View our original Save the Date
+        </button>
+    </footer>
+
+    <dialog class="keepsake-dialog" id="keepsakeDialog" aria-labelledby="keepsakeTitle">
+        <div class="keepsake-dialog__panel">
+            <button class="dialog-close" type="button" id="closeKeepsake" aria-label="Close the save-the-date keepsake">×</button>
+            <p class="eyebrow">From the beginning</p>
+            <h2 id="keepsakeTitle">Our original Save the Date</h2>
+            <p class="keepsake-intro">A small keepsake from when we first shared the news.</p>
+            <button class="legacy-envelope" id="legacyEnvelope" type="button" aria-expanded="false">
+                <img id="legacyEnvelopeImage" src="assets/Black%20C5%20Straight%20fl.png" alt="Black save-the-date envelope">
+                <span id="legacyEnvelopePrompt">Click to open</span>
+            </button>
+            <div class="legacy-invite" id="legacyInvite" hidden>
+                <img src="assets/STDinvite2.png" alt="Nick and Belinda's original save-the-date invitation">
             </div>
-        </section>
+        </div>
+    </dialog>
 
-        <section class="venue-section">
-            <div class="container">
-                <div class="venue-content">
-                    <div class="venue-address">
-                        <p>Eastington Park</p>
-                        <p>Gloucestershire</p>
-                        <p>GL10 3RY</p>
-                    </div>
-                    <a href="https://www.eastingtonpark.co.uk/gallery/" class="venue-btn">View This Venue</a>
-                    <div class="map-container">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d2470.0942662111493!2d-2.3136003!3d51.7495998!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x487109f746679a5d%3A0xbf145f5aa0e00283!2sEastington%20Park%2C%20Spring%20Hill%20GL10%203RY!3m2!1d51.7495998!2d-2.3114116!5e0!3m2!1sen!2suk!4v1772652670341!5m2!1sen!2suk"
-                            width="100%"
-                            height="100%"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="accommodation-section">
-            <div class="container">
-                <div class="accommodation-content">
-                    <h2 class="accommodation-title">Places to Stay</h2>
-                    <button class="accommodation-btn">Explore Accommodation - No active Link yet</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="password-countdown-section">
-            <div class="container">
-                <p class="password-countdown-text">Countdown to when the invitation password will be sent</p>
-                <div class="tick" data-did-init="handleInviteCountdown">
-                    <div data-repeat="true" data-layout="horizontal fit" data-transform="preset(d, h, m, s)">
-                        <div class="tick-group">
-                            <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
-                                <span data-view="flip"></span>
-                            </div>
-                            <span data-key="label" data-view="text" class="tick-label"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="rsvp-section">
-            <div class="container">
-                <div class="rsvp-content">
-                    <h2 class="rsvp-title">RSVP</h2>
-                    <div class="rsvp-locked" id="rsvpLocked">
-                        <input type="password" id="passwordInput" class="password-input" placeholder="Enter password to unlock">
-                        <button class="unlock-btn" id="unlockBtn">Unlock</button>
-                    </div>
-                    <div class="rsvp-unlocked" id="rsvpUnlocked" style="display: none;">
-                        <div class="qr-code-container">
-                            <img src="assets/Qr-code.png" alt="RSVP QR Code" class="qr-code">
-                            <a href="https://bridebook.com/uk/for/belinda-and-nick/rsvp" class="qr-link-btn">RSVP</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        -->
-    </div>
-
-    <script src="flip/flip.min.js?v=1.0"></script>
-    <script src="assets/flip-master/tick/tick.core.global.min.js?v=1.0"></script>
-    <script src="assets/flip-master/dist/tick.view.flip.global.min.js?v=1.0"></script>
-    <script src="scripts/main.js?v=1.0"></script>
+    <noscript>
+        <div class="noscript-note">Please enable JavaScript to use the live countdown and submit the RSVP form without leaving this page.</div>
+    </noscript>
+    <script src="scripts/main.js?v=2.0"></script>
 </body>
 </html>
