@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="theme-color" content="#f7f3ec">
+    <meta name="description" content="Our website is still being prepared. Please check back soon.">
+    <title>Under maintenance | N &amp; B</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; background: #f7f3ec; color: #26372c; font: 18px/1.6 Georgia, serif; }
+        main { width: min(100%, 480px); padding: clamp(28px, 7vw, 56px); text-align: center; background: #fffdf9; border: 1px solid #d3c4ae; box-shadow: 0 24px 70px #222a2312; }
+        .monogram { margin: 0 0 28px; font-size: 32px; letter-spacing: .16em; }
+        .monogram span { color: #ad8b57; font-style: italic; }
+        .eyebrow { font: 14px/1.6 Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #555a52; }
+        h1 { margin: 12px 0; font-size: clamp(32px, 6vw, 44px); font-weight: 400; line-height: 1.2; }
+        p { margin: 16px 0; }
+        form { margin-top: 30px; text-align: left; font-family: Arial, sans-serif; font-size: 16px; }
+        label { display: block; margin-bottom: 8px; }
+        input, button { width: 100%; min-height: 48px; padding: 12px 16px; border: 1px solid #b3b9b0; border-radius: 3px; font: inherit; }
+        input { background: #fff; color: #20231f; }
+        button { margin-top: 14px; background: #435746; color: white; border-color: #435746; cursor: pointer; }
+        button:disabled { opacity: .7; cursor: wait; }
+        :focus-visible { outline: 3px solid #ad8b57; outline-offset: 3px; }
+        #message { min-height: 1.6em; margin: 12px 0 0; color: #8c3434; font: 16px/1.6 Arial, sans-serif; }
+        noscript { display: block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="monogram" aria-label="N and B">N <span>&amp;</span> B</p>
+        <p class="eyebrow">A little work in progress</p>
+        <h1>Something lovely is on its way</h1>
+        <p>We’re putting the finishing touches to our website. Please check back soon.</p>
+        <form id="unlockForm">
+            <label for="password">Preview password</label>
+            <input id="password" name="password" type="password" inputmode="numeric" autocomplete="current-password" required aria-describedby="message">
+            <button id="unlockButton" type="submit">Unlock preview</button>
+            <p id="message" role="status" aria-live="polite"></p>
+        </form>
+        <noscript>Please enable JavaScript to unlock the preview.</noscript>
+    </main>
+    <script>
+        const preview = /* ENCRYPTED_PREVIEW */;
+        const decode = value => Uint8Array.from(atob(value), character => character.charCodeAt(0));
+        document.getElementById('unlockForm').addEventListener('submit', async event => {
+            event.preventDefault();
+            const input = document.getElementById('password');
+            const button = document.getElementById('unlockButton');
+            const message = document.getElementById('message');
+            if (!window.crypto?.subtle) {
+                message.textContent = 'Please open the HTTPS website in an up-to-date browser to preview it.';
+                return;
+            }
+            button.disabled = true;
+            button.textContent = 'Unlocking…';
+            input.removeAttribute('aria-invalid');
+            message.textContent = '';
+            let html;
+            try {
+                const material = await crypto.subtle.importKey('raw', new TextEncoder().encode(input.value.trim()), 'PBKDF2', false, ['deriveKey']);
+                const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: decode(preview.salt), iterations: preview.iterations, hash: 'SHA-256' }, material, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+                const result = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: decode(preview.iv) }, key, decode(preview.data));
+                html = new TextDecoder().decode(result);
+            } catch {
+                message.textContent = 'That password isn’t correct. Please try again.';
+                input.setAttribute('aria-invalid', 'true');
+                input.select();
+                button.disabled = false;
+                button.textContent = 'Unlock preview';
+                return;
+            }
+            // Replacing the document also runs its original scripts and load events.
+            document.open();
+            document.write(html);
+            document.close();
+        });
+    </script>
+</body>
+</html>

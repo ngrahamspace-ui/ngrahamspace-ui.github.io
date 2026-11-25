@@ -447,7 +447,8 @@ a {
     aspect-ratio: 4 / 5;
 }
 
-.story-chapter__image figcaption {
+.story-chapter__image figcaption,
+.rsvp-slider figcaption {
     position: absolute;
     right: -1px;
     bottom: -1px;
@@ -729,10 +730,28 @@ a {
 }
 
 .venue-card__image {
-    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    margin: 0 24px 24px 0;
+}
+
+.venue-card__image::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 24px;
+    left: 24px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(173, 139, 87, 0.48);
+    pointer-events: none;
 }
 
 .venue-card__image img {
+    position: relative;
+    z-index: 1;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -957,19 +976,20 @@ a {
 
 .rsvp-intro__image {
     position: relative;
-    margin: 36px 18px 18px 0;
+    margin: 36px 24px 24px 0;
     aspect-ratio: 4 / 3;
 }
 
 .rsvp-intro__image::after {
     content: "";
     position: absolute;
-    right: -18px;
-    bottom: -18px;
-    width: 72%;
-    height: 72%;
-    border: 1px solid rgba(173, 139, 87, 0.5);
     z-index: -1;
+    top: 24px;
+    left: 24px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(173, 139, 87, 0.48);
+    pointer-events: none;
 }
 
 .rsvp-intro__image img {
@@ -1476,8 +1496,8 @@ a {
     }
 
     .rsvp-intro__image {
-        width: calc(100% - 18px);
-        margin: 36px 18px 18px 0;
+        width: calc(100% - 24px);
+        margin: 36px 24px 24px 0;
         aspect-ratio: 16 / 10;
     }
 }
@@ -1558,7 +1578,9 @@ a {
         width: calc(100% - 14px);
     }
 
-    .story-chapter__image::before {
+    .story-chapter__image::before,
+    .rsvp-intro__image::after,
+    .venue-card__image::after {
         top: 14px;
         left: 14px;
     }
@@ -1624,6 +1646,8 @@ a {
 
     .venue-card__image {
         min-height: 280px;
+        margin-right: 14px;
+        margin-bottom: 14px;
     }
 
     .venue-card__copy {
@@ -1655,8 +1679,8 @@ a {
     }
 
     .rsvp-intro__image {
-        width: calc(100% - 18px);
-        margin: 32px 18px 18px 0;
+        width: calc(100% - 14px);
+        margin: 32px 14px 14px 0;
         aspect-ratio: 4 / 3;
     }
 

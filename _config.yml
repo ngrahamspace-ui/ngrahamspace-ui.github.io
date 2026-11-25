@@ -1,0 +1,6 @@
+# Keep editable preview files and development helpers off GitHub Pages.
+exclude:
+  - _preview
+  - scripts/lock-site.mjs
+  - scripts/check-preview.mjs
+  - PREVIEW.md
