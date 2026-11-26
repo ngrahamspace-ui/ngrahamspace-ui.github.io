@@ -1054,6 +1054,13 @@ a {
     border: 0;
 }
 
+.attendance-details {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
 .meal-preferences > legend {
     margin-bottom: 8px;
     font-size: 28px;

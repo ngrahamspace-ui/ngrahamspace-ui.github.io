@@ -94,12 +94,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitButton = rsvpForm.querySelector("button[type='submit']");
     const submitButtonLabel = submitButton.querySelector("span");
     const mealPreferences = document.getElementById("mealPreferences");
+    const attendanceDetails = document.getElementById("attendanceDetails");
     const mealPicker = document.getElementById("mealPicker");
     const starter = document.getElementById("starterChoice");
     const main = document.getElementById("mainChoice");
     const updateMealPreferences = (event) => {
         const attendance = rsvpForm.querySelector('input[name="Attendance"]:checked')?.value;
         const attending = attendance === "Joyfully accept";
+        attendanceDetails.hidden = !attending;
+        attendanceDetails.disabled = !attending;
         mealPicker.hidden = attendance === "Regretfully decline";
         mealPreferences.disabled = attendance === "Regretfully decline";
         starter.required = attending;
