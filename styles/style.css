@@ -448,7 +448,7 @@ a {
 }
 
 .story-chapter__image figcaption,
-.rsvp-slider figcaption {
+.rsvp-intro__image figcaption {
     position: absolute;
     right: -1px;
     bottom: -1px;
@@ -459,134 +459,6 @@ a {
     font-size: 9px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-}
-
-.story-slider {
-    overflow: visible;
-    background: #d7d1c5;
-    touch-action: pan-y;
-}
-
-.story-slider__image {
-    transition: opacity 240ms ease, transform 500ms ease;
-}
-
-.story-slider--contain {
-    background: linear-gradient(145deg, var(--paper), var(--ivory-deep));
-}
-
-.story-slider--contain .story-slider__image {
-    padding: clamp(8px, 1.2vw, 14px);
-    object-fit: contain;
-    background: linear-gradient(145deg, var(--paper), var(--ivory-deep));
-    box-shadow: inset 0 0 0 1px rgba(173, 139, 87, 0.22);
-}
-
-.story-slider--portrait {
-    width: 78%;
-    justify-self: center;
-    aspect-ratio: 3 / 4;
-}
-
-.story-slider[data-slider-label="Our Adventures"][data-current-slide="6"] .story-slider__image {
-    object-position: 58% 35%;
-}
-
-.story-slider__image.is-changing {
-    opacity: 0;
-    transform: scale(1.015);
-}
-
-.story-slider__button {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    width: 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 50%;
-    color: #fff;
-    background: rgba(24, 30, 25, 0.5);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
-    cursor: pointer;
-    transform: translateY(-50%);
-    transition: background-color 180ms ease, transform 180ms ease;
-}
-
-.story-slider__button:hover,
-.story-slider__button:focus-visible {
-    background: rgba(24, 30, 25, 0.82);
-    transform: translateY(-50%) scale(1.06);
-}
-
-.story-slider__button:focus-visible,
-.story-slider__dot:focus-visible {
-    outline: 2px solid #fff;
-    outline-offset: 3px;
-}
-
-.story-slider__button span {
-    margin-top: -3px;
-    font-family: var(--sans);
-    font-size: 34px;
-    font-weight: 300;
-    line-height: 1;
-}
-
-.story-slider__button--previous {
-    left: 16px;
-}
-
-.story-slider__button--next {
-    right: 16px;
-}
-
-.story-slider__dots {
-    position: absolute;
-    z-index: 2;
-    left: 50%;
-    bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 8px 10px;
-    border-radius: 999px;
-    background: rgba(24, 30, 25, 0.46);
-    transform: translateX(-50%);
-}
-
-.story-slider__dot {
-    width: 7px;
-    height: 7px;
-    padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.82);
-    border-radius: 50%;
-    background: transparent;
-    cursor: pointer;
-    transition: background-color 180ms ease, transform 180ms ease;
-}
-
-.story-slider__dot.is-active {
-    background: #fff;
-    transform: scale(1.28);
-}
-
-.story-slider figcaption {
-    top: 14px;
-    right: 14px;
-    bottom: auto;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.story-slider__counter {
-    padding-left: 10px;
-    border-left: 1px solid rgba(69, 80, 68, 0.25);
-    font-variant-numeric: tabular-nums;
 }
 
 .story-chapter__copy {
@@ -1680,35 +1552,6 @@ a {
     .venue-card__image::after {
         top: 14px;
         left: 14px;
-    }
-
-    .story-slider__button {
-        width: 40px;
-        height: 40px;
-    }
-
-    .story-slider__button--previous {
-        left: 10px;
-    }
-
-    .story-slider__button--next {
-        right: 10px;
-    }
-
-    .story-slider__dots {
-        bottom: 10px;
-        gap: 6px;
-        padding: 7px 9px;
-    }
-
-    .story-slider__dot {
-        width: 6px;
-        height: 6px;
-    }
-
-    .story-slider figcaption {
-        top: 10px;
-        right: 10px;
     }
 
     .story-chapter__copy h3,

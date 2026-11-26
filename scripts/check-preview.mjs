@@ -27,6 +27,6 @@ await elements.unlockForm.callback({ preventDefault() {} });
 assert(rendered.includes('id="main-content"'), 'Correct password must open the wedding page.');
 assert(rendered.includes('id="lockPreview"'));
 assert(rendered.includes('Reception &amp; Wedding Breakfast'), 'Latest edits must be included.');
-assert(rendered.includes('rsvp-slider story-slider'));
-assert(rendered.includes('scripts/main.js?v=2.1'));
+assert(!rendered.includes('data-slider'), 'Preview must use static photos.');
+assert(rendered.includes('scripts/main.js?v=2.2'));
 console.log('PASS: wrong password rejected; correct password decrypts latest content; relock control and original script preserved.');
