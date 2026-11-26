@@ -6,3 +6,7 @@ exclude:
   - scripts/check-rsvp.mjs
   - scripts/check-accommodation.mjs
   - PREVIEW.md
+  - node_modules
+  - package.json
+  - package-lock.json
+  - RSVP-TRIAL.md

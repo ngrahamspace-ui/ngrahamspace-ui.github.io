@@ -1,0 +1,6 @@
+{
+  "name": "nick-and-belinda-wedding-site",
+  "private": true,
+  "scripts": { "test": "node scripts/check-rsvp.mjs && node scripts/check-accommodation.mjs" },
+  "devDependencies": { "jsdom": "29.1.1" }
+}

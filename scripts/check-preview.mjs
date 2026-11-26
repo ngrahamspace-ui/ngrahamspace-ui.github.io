@@ -28,5 +28,6 @@ assert(rendered.includes('id="main-content"'), 'Correct password must open the w
 assert(rendered.includes('id="lockPreview"'));
 assert(rendered.includes('Wedding Breakfast &amp; speeches'), 'Latest edits must be included.');
 assert(!rendered.includes('data-slider'), 'Preview must use static photos.');
-assert(rendered.includes('scripts/main.js?v=2.7'));
+assert(rendered.includes('scripts/main.js?v=2.8'));
+assert(rendered.includes('scripts/household-rsvp.js?v=2.8'));
 console.log('PASS: wrong password rejected; correct password decrypts latest content; relock control and original script preserved.');
