@@ -678,7 +678,7 @@ a {
     display: grid;
     grid-template-columns: 0.7fr 1.3fr;
     gap: clamp(60px, 10vw, 140px);
-    padding-top: clamp(90px, 12vw, 150px);
+    padding-top: 0;
 }
 
 .schedule-intro h3,
@@ -993,7 +993,7 @@ a {
 .attendance-options small {
     color: var(--ink-soft);
     font-family: var(--sans);
-    font-size: 8px;
+    font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -1656,7 +1656,40 @@ a {
     }
 }
 
-.site-nav { gap: clamp(12px, 1.5vw, 24px); font-size: 10px; letter-spacing: .09em; }
+.site-nav { gap: clamp(10px, 1.2vw, 20px); font-size: 10px; letter-spacing: .06em; }
+.story-compact { width: var(--content); margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.story-compact__image { margin: 0; }
+.story-compact__image img { width: 100%; height: auto; max-height: 680px; object-fit: cover; box-shadow: var(--shadow); }
+.story-compact__copy article + article { padding-top: 24px; margin-top: 24px; border-top: 1px solid var(--line); }
+.story-compact__copy h3 { margin: 0 0 10px; font-size: 30px; font-weight: 500; }
+.story-compact__copy p { margin: 0; color: var(--ink-soft); font-size: 19px; }
+.stay-card--text { grid-template-columns: 1fr !important; }
+.taxi-options { display: grid; gap: 20px; }
+.taxi-options > div { padding: 20px; border: 1px solid var(--line); background: var(--paper); }
+.taxi-options h4 { margin: 0 0 10px; font-size: 25px; font-weight: 500; }
+.taxi-options p { margin: 12px 0; font-size: 17px; }
+.taxi-options a { color: var(--green-deep); font: 14px/1.6 var(--sans); text-underline-offset: 3px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.meal-picker { margin-bottom: 30px; border: 1px solid var(--line); background: var(--ivory); }
+.meal-picker > summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 20px; cursor: pointer; list-style: none; }
+.meal-picker > summary::-webkit-details-marker { display: none; }
+.meal-picker > summary::after { content: "+"; flex-shrink: 0; color: var(--green); font: 28px/1 var(--sans); }
+.meal-picker[open] > summary::after { content: "−"; }
+.meal-picker summary strong { display: block; font-size: 24px; line-height: 1.3; font-weight: 500; }
+.meal-picker summary small { display: block; margin-top: 6px; font: 14px/1.6 var(--sans); color: var(--ink-soft); }
+.meal-picker__content { padding: 0 20px 20px; }
+.meal-picker[open] .meal-picker__content { animation: menuAppear 220ms ease both; }
+.meal-preferences { margin-bottom: 0; }
+.meal-select-field { margin-bottom: 20px; }
+.meal-select-field label { display: block; margin-bottom: 8px; font: 600 14px/1.5 var(--sans); }
+.meal-select-field select { appearance: none; width: 100%; min-height: 50px; padding: 12px 36px 12px 14px; color: var(--ink); border: 1px solid var(--line); background: var(--paper); border-radius: 4px; font: 16px/1.5 var(--serif); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%2326372c' stroke-width='2'/%3E%3C/svg%3E"); background-position: right 14px center; background-repeat: no-repeat; }
+.dish-description { min-height: 1.6em; margin: 8px 0 0; color: var(--ink-soft); font: 14px/1.65 var(--sans); }
+.dessert-note { margin: 0 0 24px; padding: 14px; border-left: 2px solid var(--gold); font-size: 17px; }
+.meal-picker .menu-field { margin-bottom: 0; }
+.meal-picker :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.meal-picker[hidden] { display: none; }
+@keyframes menuAppear { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 920px) { .story-compact { grid-template-columns: 1fr; } .story-compact__image { max-width: 560px; margin-inline: auto; } }
 
 .accommodation { background: var(--ivory); }
 .stay-reservation, .stay-browser, .travel-guide, .faq-list { width: var(--content); margin-inline: auto; }

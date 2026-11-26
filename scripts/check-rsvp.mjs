@@ -6,7 +6,8 @@ const html = readFileSync('_preview/index.html', 'utf8');
 const main = readFileSync('scripts/main.js', 'utf8');
 const code = main.slice(main.indexOf('    const rsvpForm ='), main.indexOf('    const keepsakeDialog ='));
 for (const field of ['Starter', 'Main']) {
-    assert.equal([...html.matchAll(new RegExp(`name="${field}"`, 'g'))].length, 3);
+    const select = html.match(new RegExp(`<select[^>]*name="${field}"[^>]*>([\\s\\S]*?)</select>`))[1];
+    assert.equal([...select.matchAll(/<option value="[^"]+"/g)].length, 3);
 }
 assert(!html.includes('name="Dessert"'));
 assert(!html.includes('Cheese soufflé'));
@@ -15,6 +16,10 @@ let attendance;
 let payload;
 let valid = true;
 const meal = { hidden: true, disabled: true };
+const picker = { open: false, hidden: false };
+const starter = { value: '', selectedOptions: [{ dataset: {} }] };
+const mainChoice = { value: '', selectedOptions: [{ dataset: {} }] };
+const descriptions = { starterDescription: {}, mainDescription: {}, mealSummary: {} };
 const label = { textContent: '' };
 const button = { querySelector: () => label };
 const status = { classList: { remove() {}, add() {} } };
@@ -39,20 +44,20 @@ class RSVPData extends FormData {
     }
 }
 vm.runInNewContext(code, {
-    document: { getElementById: id => ({ rsvpForm: form, formStatus: status, mealPreferences: meal })[id] },
+    document: { getElementById: id => ({ rsvpForm: form, formStatus: status, mealPreferences: meal, mealPicker: picker, starterChoice: starter, mainChoice, ...descriptions })[id] },
     FormData: RSVPData,
     fetch: async (url, options) => { payload = options.body; return { ok: true, json: async () => ({ success: 'true' }) }; }
 });
-assert(meal.disabled && meal.hidden);
+assert(!meal.disabled && !picker.hidden, 'Menu should be discoverable before accepting.');
 attendance = 'Joyfully accept'; callbacks.change();
-assert(!meal.disabled && !meal.hidden);
+assert(!meal.disabled && !picker.hidden && starter.required && mainChoice.required);
 valid = false; await callbacks.submit({ preventDefault() {} }); assert.equal(payload, undefined);
 valid = true; await callbacks.submit({ preventDefault() {} });
 assert.equal(payload.get('Wine preference'), 'Red, Rosé');
 assert.equal(payload.get('Starter'), 'Warm Asian duck salad');
 assert.equal(payload.get('Main'), '10-hour slow-braised shin of beef');
 assert.equal(payload.get('Song request'), 'Dancing Queen — ABBA');
-assert(meal.disabled && meal.hidden, 'Successful submission must reset meal controls.');
+assert(!meal.disabled && !picker.open && !starter.required, 'Successful submission must reset meal controls.');
 attendance = 'Regretfully decline'; callbacks.change();
 await callbacks.submit({ preventDefault() {} });
 assert(!payload.has('Starter') && !payload.has('Main') && !payload.has('Wine preference'));

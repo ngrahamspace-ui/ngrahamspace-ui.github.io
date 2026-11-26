@@ -94,12 +94,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const submitButton = rsvpForm.querySelector("button[type='submit']");
     const submitButtonLabel = submitButton.querySelector("span");
     const mealPreferences = document.getElementById("mealPreferences");
-    const updateMealPreferences = () => {
-        const attending = rsvpForm.querySelector('input[name="Attendance"]:checked')?.value === "Joyfully accept";
-        mealPreferences.hidden = !attending;
-        mealPreferences.disabled = !attending;
+    const mealPicker = document.getElementById("mealPicker");
+    const starter = document.getElementById("starterChoice");
+    const main = document.getElementById("mainChoice");
+    const updateMealPreferences = (event) => {
+        const attendance = rsvpForm.querySelector('input[name="Attendance"]:checked')?.value;
+        const attending = attendance === "Joyfully accept";
+        mealPicker.hidden = attendance === "Regretfully decline";
+        mealPreferences.disabled = attendance === "Regretfully decline";
+        starter.required = attending;
+        main.required = attending;
+        if (event?.target.name === "Attendance" && attending) mealPicker.open = true;
+        document.getElementById("starterDescription").textContent = starter.selectedOptions[0]?.dataset.description || "Three starters to choose from.";
+        document.getElementById("mainDescription").textContent = main.selectedOptions[0]?.dataset.description || "Three mains to choose from.";
+        document.getElementById("mealSummary").textContent = starter.value && main.value
+            ? `${starter.value} · ${main.value}`
+            : "One starter · One main · A trio of desserts";
     };
     rsvpForm.addEventListener("change", updateMealPreferences);
+    rsvpForm.addEventListener("invalid", (event) => {
+        if (event.target === starter || event.target === main) mealPicker.open = true;
+    }, true);
     updateMealPreferences();
 
     rsvpForm.addEventListener("submit", async (event) => {
@@ -130,6 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             rsvpForm.reset();
+            mealPicker.open = false;
             updateMealPreferences();
             formStatus.textContent = "Thank you. Your response has been sent to Nick and Belinda.";
         } catch (error) {
