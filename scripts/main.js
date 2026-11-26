@@ -199,6 +199,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const formStatus = document.getElementById("formStatus");
     const submitButton = rsvpForm.querySelector("button[type='submit']");
     const submitButtonLabel = submitButton.querySelector("span");
+    const mealPreferences = document.getElementById("mealPreferences");
+    const updateMealPreferences = () => {
+        const attending = rsvpForm.querySelector('input[name="Attendance"]:checked')?.value === "Joyfully accept";
+        mealPreferences.hidden = !attending;
+        mealPreferences.disabled = !attending;
+    };
+    rsvpForm.addEventListener("change", updateMealPreferences);
+    updateMealPreferences();
 
     rsvpForm.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -211,10 +219,15 @@ document.addEventListener("DOMContentLoaded", () => {
         formStatus.classList.remove("is-error");
 
         try {
+            const formData = new FormData(rsvpForm);
+            const wines = formData.getAll("Wine preference");
+            if (!mealPreferences.disabled) {
+                formData.set("Wine preference", wines.length ? wines.join(", ") : "No wine preference selected");
+            }
             const response = await fetch(rsvpForm.action, {
                 method: "POST",
                 headers: { Accept: "application/json" },
-                body: new FormData(rsvpForm)
+                body: formData
             });
 
             const result = await response.json().catch(() => ({}));
@@ -223,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             rsvpForm.reset();
+            updateMealPreferences();
             formStatus.textContent = "Thank you. Your response has been sent to Nick and Belinda.";
         } catch (error) {
             formStatus.classList.add("is-error");

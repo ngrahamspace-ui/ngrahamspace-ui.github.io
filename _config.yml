@@ -3,4 +3,5 @@ exclude:
   - _preview
   - scripts/lock-site.mjs
   - scripts/check-preview.mjs
+  - scripts/check-rsvp.mjs
   - PREVIEW.md

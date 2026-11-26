@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css?v=2.0">
+    <link rel="stylesheet" href="styles/style.css?v=2.1">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to the invitation</a>
@@ -197,7 +197,7 @@
                     <div class="rsvp-intro__copy">
                         <p class="eyebrow">We hope you can join us</p>
                         <h2 id="rsvp-title">Kindly Respond</h2>
-                        <p>Please send one response per invitation. Your reply will be emailed directly to Nick and Belinda.</p>
+                        <p>Please send one response per guest so we can match everyone’s menu choices. Your reply will be emailed directly to Nick and Belinda.</p>
                         <p class="rsvp-deadline">RSVP deadline · <strong>To be confirmed</strong></p>
                     </div>
                     <figure class="rsvp-intro__image rsvp-slider story-slider" data-slider data-slider-label="Kindly Respond" data-slides='["assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-109.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-20.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-30.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-38.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-50.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-58.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-70.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-81.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-90.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-100.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-117.jpg","assets/Photographer/Belinda%20%26%20Nick%20-%20The%20Kensington%20Photographer%20%28web-size%29/Belinda%20_26%20Nick-130.jpg"]' aria-label="Kindly Respond photo slideshow">
@@ -241,8 +241,45 @@
                         </div>
                     </fieldset>
 
+                    <fieldset class="meal-preferences" id="mealPreferences" hidden disabled>
+                        <legend>Your wedding breakfast</legend>
+                        <p class="form-help">Choose one starter and one main for yourself.</p>
+                        <fieldset class="menu-field">
+                            <legend>Starter <span aria-hidden="true">*</span></legend>
+                            <div class="menu-options">
+                                <label><input type="radio" name="Starter" value="Winter squash soup" required><span><strong>Winter squash soup</strong><small>Crème fraîche and crisp sage</small></span></label>
+                                <label><input type="radio" name="Starter" value="Smoked salmon and prawn mousse" required><span><strong>Smoked salmon and prawn mousse</strong><small>Baby gem lettuce and sourdough croûte</small></span></label>
+                                <label><input type="radio" name="Starter" value="Warm Asian duck salad" required><span><strong>Warm Asian duck salad</strong><small>Crisp noodles, plum and hoisin dressing</small></span></label>
+                            </div>
+                        </fieldset>
+                        <fieldset class="menu-field">
+                            <legend>Main <span aria-hidden="true">*</span></legend>
+                            <div class="menu-options">
+                                <label><input type="radio" name="Main" value="10-hour slow-braised shin of beef" required><span><strong>10-hour slow-braised shin of beef</strong><small>Dauphinoise potato, carrot purée, buttered seasonal greens and braising jus</small></span></label>
+                                <label><input type="radio" name="Main" value="Sea bass fillet" required><span><strong>Sea bass fillet</strong><small>Niçoise salad of warm new potatoes, fine green beans, black olives and sauce vierge</small></span></label>
+                                <label><input type="radio" name="Main" value="Chargrilled cauliflower steak" required><span><strong>Chargrilled cauliflower steak</strong><small>Parmesan cheese crumb, warm garlic butter beans and parsley oil</small></span></label>
+                            </div>
+                        </fieldset>
+                        <p class="form-help">A trio of desserts will be served, so there’s no need to choose.</p>
+                        <fieldset class="menu-field">
+                            <legend>Wine preference <span>Optional</span></legend>
+                            <p class="form-help" id="wineHelp">Select all that you enjoy, or leave blank if you won’t be drinking wine.</p>
+                            <div class="wine-options" aria-describedby="wineHelp">
+                                <label><input type="checkbox" name="Wine preference" value="Red"><span>Red</span></label>
+                                <label><input type="checkbox" name="Wine preference" value="White"><span>White</span></label>
+                                <label><input type="checkbox" name="Wine preference" value="Rosé"><span>Rosé</span></label>
+                            </div>
+                        </fieldset>
+                    </fieldset>
+
                     <div class="form-field">
-                        <label for="note">Note <span>Optional</span></label>
+                        <label for="songRequest">Recommend a song <span>Optional</span></label>
+                        <input id="songRequest" name="Song request" type="text" maxlength="200" placeholder="Song title and artist" aria-describedby="songDisclaimer">
+                        <p class="form-help" id="songDisclaimer">* We’d love your suggestions, but song requests aren’t guaranteed.</p>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="note">Dietary needs or other notes <span>Optional</span></label>
                         <textarea id="note" name="Note" rows="4" placeholder="Dietary, accessibility or other helpful information"></textarea>
                     </div>
 
@@ -284,6 +321,6 @@
     <noscript>
         <div class="noscript-note">Please enable JavaScript to use the live countdown and submit the RSVP form without leaving this page.</div>
     </noscript>
-    <script src="scripts/main.js?v=2.0"></script>
+    <script src="scripts/main.js?v=2.1"></script>
 </body>
 </html>
