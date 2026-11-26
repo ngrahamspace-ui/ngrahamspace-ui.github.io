@@ -8,7 +8,7 @@ assert(!/32 guest rooms|prebooked|groomsmen|The Lazy Goose/.test(html));
 assert(html.includes('Premier Inn Stroud'));
 assert(!html.includes('12:45'));
 assert(!html.includes('Time TBC'));
-for (const time of ['12:15', '12:30', '14:00', '16:15', '18:45', '19:15', '21:00', '2027-06-10T01:00:00+01:00']) {
+for (const time of ['12:15', '12:30', '14:00', '16:15', '18:45', '19:15', '21:00', '2027-06-10T02:00:00+01:00']) {
     assert(html.includes(`datetime="${time}"`));
 }
 for (const match of html.matchAll(/<img[^>]*src="([^"]+)"/g)) assert(existsSync(decodeURIComponent(match[1])), `Missing image: ${match[1]}`);
