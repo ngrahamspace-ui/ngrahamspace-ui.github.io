@@ -5,6 +5,7 @@ exclude:
   - scripts/check-preview.mjs
   - scripts/check-rsvp.mjs
   - scripts/check-accommodation.mjs
+  - scripts/check-site.mjs
   - PREVIEW.md
   - node_modules
   - package.json

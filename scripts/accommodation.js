@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.setAttribute("aria-pressed", "false");
         button.addEventListener("click", () => {
             showMap(button.dataset.stayMap, button.dataset.stayName);
-            if (window.matchMedia("(max-width: 900px)").matches) {
+            if (window.matchMedia("(max-width: 920px)").matches) {
                 mapHeading.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
             }
         });

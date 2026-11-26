@@ -22,6 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navLinks.forEach((link) => link.addEventListener("click", closeMenu));
 
+    const revealHashTarget = (hash) => {
+        let id;
+        try { id = decodeURIComponent(hash.slice(1)); } catch { return; }
+        let target = document.getElementById(id);
+        while (target) {
+            if (target.tagName === "DETAILS") target.open = true;
+            target = target.parentElement;
+        }
+    };
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener("click", () => revealHashTarget(link.getAttribute("href")));
+    });
+    window.addEventListener("hashchange", () => revealHashTarget(window.location.hash));
+    revealHashTarget(window.location.hash);
+
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && siteNav.classList.contains("is-open")) {
             closeMenu();
@@ -36,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateHeader();
     window.addEventListener("scroll", updateHeader, { passive: true });
 
-    const sections = Array.from(document.querySelectorAll("main section[id]"));
+    const sections = navLinks.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
     const navigationObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
@@ -96,8 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const legacyEnvelopeImage = document.getElementById("legacyEnvelopeImage");
     const legacyEnvelopePrompt = document.getElementById("legacyEnvelopePrompt");
     const legacyInvite = document.getElementById("legacyInvite");
+    let envelopeTimer;
 
     const resetKeepsake = () => {
+        window.clearTimeout(envelopeTimer);
         legacyEnvelope.setAttribute("aria-expanded", "false");
         legacyEnvelopeImage.src = "assets/Black%20C5%20Straight%20fl.png";
         legacyEnvelopeImage.alt = "Black save-the-date envelope";
@@ -121,11 +138,12 @@ document.addEventListener("DOMContentLoaded", () => {
     closeKeepsake.addEventListener("click", closeKeepsakeDialog);
 
     legacyEnvelope.addEventListener("click", () => {
+        window.clearTimeout(envelopeTimer);
         legacyEnvelope.setAttribute("aria-expanded", "true");
         legacyEnvelopeImage.src = "assets/black%20envelope%20open.png";
         legacyEnvelopeImage.alt = "Opened black save-the-date envelope";
         legacyEnvelopePrompt.textContent = "Our save the date";
-        window.setTimeout(() => {
+        envelopeTimer = window.setTimeout(() => {
             legacyEnvelope.hidden = true;
             legacyInvite.hidden = false;
         }, 280);
@@ -137,5 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     keepsakeDialog.addEventListener("close", () => {
         body.classList.remove("dialog-open");
+        resetKeepsake();
     });
 });
