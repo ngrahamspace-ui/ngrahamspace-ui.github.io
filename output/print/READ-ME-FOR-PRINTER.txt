@@ -1,0 +1,13 @@
+Nick & Belinda - website QR code
+
+Encoded URL: https://nickandbelinda.com/
+Preferred file: nick-and-belinda-website-qr.svg (vector, designed at 30 x 30 mm).
+Alternative file: nick-and-belinda-website-qr.png (2460 x 2460 pixels).
+
+Artwork is black on an opaque white background with a four-module clear border.
+Keep this white border intact. Keep the code square and do not stretch or crop it.
+Use the SVG for sharp printing at the final artwork size.
+Please test a scan from the final printed proof before the production run.
+
+The code was independently decoded successfully from the full PNG and a 354 x 354 pixel proof.
+The website currently has its existing preview password gate. The QR code contains only the website URL.
