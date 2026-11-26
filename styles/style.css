@@ -208,7 +208,7 @@ a {
 
 .hero__shade {
     z-index: -1;
-    background: linear-gradient(180deg, rgba(20, 27, 21, 0.48), rgba(20, 27, 21, 0.12) 46%, rgba(20, 27, 21, 0.54));
+    background: linear-gradient(180deg, rgba(14, 23, 16, 0.48), rgba(14, 23, 16, 0.58) 38%, rgba(14, 23, 16, 0.58) 65%, rgba(14, 23, 16, 0.70));
 }
 
 .hero__content {
@@ -229,6 +229,10 @@ a {
 }
 
 .hero__eyebrow {
+    font-size: 0.875rem;
+    letter-spacing: 0.12em;
+    line-height: 1.6;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
     animation: fadeUp 700ms 280ms ease both;
 }
 
@@ -253,25 +257,34 @@ a {
 
 .hero__invitation {
     margin: 26px 0 30px;
-    font-size: clamp(20px, 2.2vw, 28px);
-    font-style: italic;
+    font-size: clamp(26px, 2.5vw, 32px);
+    font-weight: 500;
+    line-height: 1.4;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
     animation: fadeUp 700ms 520ms ease both;
 }
 
 .hero__details {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 17px;
     margin-bottom: 36px;
     font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.7;
+    letter-spacing: 0.035em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     animation: fadeUp 700ms 620ms ease both;
 }
 
 .hero .button {
+    min-height: 56px;
+    padding: 17px 28px;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-shadow: none;
     animation: fadeUp 700ms 720ms ease both;
 }
 
@@ -284,8 +297,10 @@ a {
     align-items: center;
     gap: 9px;
     font-family: var(--sans);
-    font-size: 9px;
-    letter-spacing: 0.2em;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     text-decoration: none;
     text-transform: uppercase;
     transform: translateX(-50%);
@@ -1484,9 +1499,9 @@ a {
         scroll-padding-top: 66px;
     }
 
-    .hero__content {
-        padding-top: 90px;
-    }
+    .hero { min-height: max(820px, 100svh); height: auto; }
+
+    .hero__content { padding: 100px 0 120px; }
 
     .hero h1 {
         flex-direction: column;
@@ -1508,7 +1523,7 @@ a {
     .hero__details {
         flex-direction: column;
         gap: 7px;
-        font-size: 9px;
+        font-size: 1rem;
     }
 
     .hero__details span[aria-hidden="true"] {
