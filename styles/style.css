@@ -823,15 +823,44 @@ a {
     transform: translate(-50%, -50%);
 }
 
+.attire__ornament span {
+    color: inherit;
+}
+
 .attire__content {
     z-index: 1;
     width: min(620px, calc(100vw - 48px));
     text-align: center;
 }
 
+.attire__content > .eyebrow {
+    margin-bottom: 18px;
+    color: #fffdf9;
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    line-height: 1.6;
+}
+
+.attire .status-pill {
+    min-width: 0;
+    padding: 10px 18px;
+    color: #fffdf9;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #bfa57d;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    line-height: 1.5;
+    text-transform: none;
+}
+
 .attire__content > p:last-child {
     margin: 25px auto 0;
-    color: rgba(255, 255, 255, 0.75);
+    max-width: 34rem;
+    color: #fffdf9;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.8;
 }
 
 .status-pill--light {
