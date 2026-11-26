@@ -4,9 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.querySelector(".menu-toggle");
     const siteNav = document.getElementById("siteNav");
     const navLinks = Array.from(siteNav.querySelectorAll("a"));
+    const menuLabel = menuToggle.querySelector(".menu-toggle__label");
+    const mobileMenu = window.matchMedia("(max-width: 920px)");
 
     const closeMenu = () => {
         menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open menu");
+        menuLabel.textContent = "Menu";
         siteNav.classList.remove("is-open");
         header.classList.remove("menu-active");
         body.classList.remove("menu-open");
@@ -14,13 +18,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     menuToggle.addEventListener("click", () => {
         const willOpen = menuToggle.getAttribute("aria-expanded") !== "true";
+        if (!willOpen) { closeMenu(); return; }
         menuToggle.setAttribute("aria-expanded", String(willOpen));
+        menuToggle.setAttribute("aria-label", "Close menu");
+        menuLabel.textContent = "Close";
         siteNav.classList.toggle("is-open", willOpen);
         header.classList.toggle("menu-active", willOpen);
         body.classList.toggle("menu-open", willOpen);
+        siteNav.scrollTop = 0;
+        navLinks[0].focus({ preventScroll: true });
     });
 
     navLinks.forEach((link) => link.addEventListener("click", closeMenu));
+    header.querySelector(".monogram").addEventListener("click", closeMenu);
+    document.addEventListener("click", event => {
+        if (siteNav.classList.contains("is-open") && !header.contains(event.target)) closeMenu();
+    });
+    header.addEventListener("focusout", event => {
+        if (event.relatedTarget && !header.contains(event.relatedTarget)) closeMenu();
+    });
+    mobileMenu.addEventListener?.("change", event => {
+        if (!event.matches) closeMenu();
+    });
+
+    siteNav.addEventListener("keydown", event => {
+        if (!siteNav.classList.contains("is-open")) return;
+        const index = navLinks.indexOf(document.activeElement);
+        if (index < 0) return;
+        let target;
+        if (event.key === "ArrowDown") target = navLinks[(index + 1) % navLinks.length];
+        if (event.key === "ArrowUp") target = navLinks[(index - 1 + navLinks.length) % navLinks.length];
+        if (event.key === "Home") target = navLinks[0];
+        if (event.key === "End") target = navLinks[navLinks.length - 1];
+        if (target) { event.preventDefault(); target.focus(); }
+    });
 
     const revealHashTarget = (hash) => {
         let id;

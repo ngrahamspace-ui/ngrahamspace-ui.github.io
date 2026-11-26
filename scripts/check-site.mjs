@@ -29,7 +29,11 @@ w.clearTimeout = id => { if (!timers.delete(id)) nativeClearTimeout(id); };
 w.setInterval = () => 0;
 let mobile = false;
 let reducedMotion = false;
-w.matchMedia = query => ({ matches: query.includes('reduced-motion') ? reducedMotion : mobile });
+const mediaChanges = new Map();
+w.matchMedia = query => ({
+    get matches() { return query.includes('reduced-motion') ? reducedMotion : mobile; },
+    addEventListener(type, callback) { if (type === 'change') mediaChanges.set(query, callback); }
+});
 let scrolled;
 w.HTMLElement.prototype.scrollIntoView = function(options) { scrolled = { target: this, options }; };
 const dialog = get('keepsakeDialog');
@@ -61,6 +65,52 @@ for (const element of d.querySelectorAll('img[src], script[src], link[rel="style
     if (!path.startsWith('https:')) assert(existsSync(decodeURIComponent(path.split('?')[0])), `Missing asset: ${path}`);
 }
 const css = readFileSync('styles/style.css', 'utf8');
+// Check the complete responsive cascade: a late desktop rule previously shrank
+// mobile labels, while the fixed panel could collapse inside the filtered header.
+// jsdom has no viewport layout or CSS-variable resolution, so select media rules
+// and resolve the palette explicitly; these checks do not claim rendered QA.
+const palette = Object.fromEntries([...css.matchAll(/--([a-z-]+):\s*(#[0-9a-f]+);/g)].map(match => [match[1], match[2]]));
+const cssParser = new JSDOM('<style></style>');
+cssParser.window.document.querySelector('style').textContent = css.replace(/var\(--([a-z-]+)\)/g, (match, name) => palette[name] || match);
+const rulesForWidth = (rules, width) => [...rules].map(rule => {
+    if (!rule.conditionText) return rule.cssText;
+    const sizes = [...rule.conditionText.matchAll(/(max|min)-width:\s*(\d+)px/g)];
+    if (!sizes.length || !sizes.every(([, type, size]) => type === 'max' ? width <= +size : width >= +size)) return '';
+    return rulesForWidth(rule.cssRules, width);
+}).join('\n');
+for (const width of [320, 375, 390, 768, 844, 920, 921]) {
+    const sample = new JSDOM(html);
+    const document = sample.window.document;
+    const style = document.createElement('style');
+    style.textContent = rulesForWidth(cssParser.window.document.styleSheets[0].cssRules, width);
+    document.head.append(style);
+    const nav = document.getElementById('siteNav');
+    const header = document.getElementById('siteHeader');
+    nav.classList.add('is-open'); header.classList.add('menu-active');
+    const navStyle = sample.window.getComputedStyle(nav);
+    if (width <= 920) {
+        assert.equal(navStyle.position, 'absolute', 'Dropdown must stay below the header rather than fill its containing block');
+        assert.equal(navStyle.inset, '100% 0 auto');
+        assert(navStyle.maxHeight.includes('dvh'), 'Short and landscape screens need a viewport height bound');
+        assert.equal(navStyle.overflowY, 'auto', 'Every tab must remain reachable by scrolling');
+        assert.equal(navStyle.justifyContent, 'flex-start', 'Overflow must not push the first tabs above the viewport');
+        assert.equal(navStyle.opacity, '1');
+        assert.equal(navStyle.backgroundColor, 'rgb(255, 253, 249)', 'Open panel must be opaque');
+        assert.equal(sample.window.getComputedStyle(header).backgroundColor, navStyle.backgroundColor, 'Open header must also be opaque');
+        const font = parseFloat(navStyle.fontSize) * (navStyle.fontSize.endsWith('rem') ? 16 : 1);
+        assert(font >= 18, 'Late desktop styles must not shrink mobile labels');
+        for (const link of nav.querySelectorAll('a')) {
+            const linkStyle = sample.window.getComputedStyle(link);
+            assert(parseFloat(linkStyle.minHeight) >= 44, 'Links need a comfortable tap target');
+            assert.equal(linkStyle.flexShrink, '0', 'Short screens must scroll rather than squeeze targets');
+        }
+    } else {
+        assert.equal(navStyle.position, 'static');
+        assert.equal(navStyle.overflowY, 'visible');
+    }
+    sample.window.close();
+}
+cssParser.window.close();
 for (const [, rawPath] of css.matchAll(/url\(["']?([^)'"\s]+)["']?\)/g)) {
     if (!/^(data:|https:)/.test(rawPath)) assert(existsSync(new URL(decodeURIComponent(rawPath), new URL('../styles/style.css', import.meta.url))), `Missing CSS asset: ${rawPath}`);
 }
@@ -90,6 +140,31 @@ d.querySelector('.menu-toggle').click();
 d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape' }));
 assert.equal(d.activeElement, d.querySelector('.menu-toggle'));
 assert(!d.body.classList.contains('menu-open'));
+
+// Dropdown keyboard/touch dismissal, focus, scroll reset and rotation to desktop.
+const toggle = d.querySelector('.menu-toggle');
+const menuLinks = [...get('siteNav').querySelectorAll('a')];
+const assertClosed = () => {
+    assert.equal(toggle.getAttribute('aria-expanded'), 'false');
+    assert.equal(toggle.getAttribute('aria-label'), 'Open menu');
+    assert.equal(toggle.querySelector('span').textContent, 'Menu');
+    assert(!d.body.classList.contains('menu-open'));
+};
+toggle.click();
+assert.equal(d.activeElement, menuLinks[0]);
+assert.equal(toggle.getAttribute('aria-label'), 'Close menu');
+for (const [key, target] of [['End', menuLinks.at(-1)], ['ArrowDown', menuLinks[0]], ['ArrowUp', menuLinks.at(-1)], ['Home', menuLinks[0]]]) {
+    d.activeElement.dispatchEvent(new w.KeyboardEvent('keydown', { key, bubbles: true, cancelable: true }));
+    assert.equal(d.activeElement, target, key);
+}
+get('siteNav').scrollTop = 200;
+toggle.click(); assertClosed();
+toggle.click(); assert.equal(get('siteNav').scrollTop, 0);
+get('hero-title').click(); assertClosed();
+toggle.click(); get('openKeepsake').focus(); assertClosed();
+toggle.click(); d.querySelector('.monogram').click(); assertClosed();
+toggle.click(); mediaChanges.get('(max-width: 920px)')({ matches: false }); assertClosed();
+
 Object.defineProperty(w, 'scrollY', { value: 80, configurable: true });
 w.dispatchEvent(new w.Event('scroll'));
 assert(get('siteHeader').classList.contains('is-scrolled'));
@@ -177,5 +252,5 @@ for (let repeat = 0; repeat < 3; repeat++) {
     assert.equal(get('legacyEnvelope').getAttribute('aria-expanded'), 'false');
 }
 assert.equal(errors.length, 0, errors.map(String).join('\n'));
-console.log(`PASS: ${d.querySelectorAll('a').length} links, ${d.querySelectorAll('button').length} static buttons, asset/ARIA targets; menu, FAQ/taxi disclosures, maps, date/adult combinations, invalid searches, keepsake and animation cancellation. External navigation intercepted.`);
+console.log(`PASS: ${d.querySelectorAll('a').length} links, ${d.querySelectorAll('button').length} static buttons, asset/ARIA targets; opaque scrollable menu cascade at 7 widths, keyboard/dismissal/resize; FAQ/taxi disclosures, maps, date/adult combinations, invalid searches, keepsake and animation cancellation. External navigation intercepted.`);
 w.close();
