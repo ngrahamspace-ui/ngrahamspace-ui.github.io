@@ -101,6 +101,6 @@ assert(!reviewText().includes('Starter:'));
 assert(!reviewText().includes('Song suggestion:'));
 assert.equal(requests, 0);
 assert.equal(d.querySelectorAll('#our-story img').length, 1);
-assert(html.includes('Parking at the church is restricted'));
+assert(html.includes('park at Eastington Park and leave your car there for the celebrations'));
 console.log('PASS: code-free full-name lookup for every sample household member; case/spacing tolerance; unmatched names blocked; all 9 meal combinations; couple/family mixed attendance; required validation; guest notes; shared email/song; review/edit/reset; no real submissions.');
 dom.window.close();
