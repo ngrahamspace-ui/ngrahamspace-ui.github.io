@@ -225,10 +225,9 @@
                     <ol class="rsvp-steps" aria-label="RSVP progress"><li aria-current="step">Find invitation</li><li>Your party</li><li>Review</li></ol>
                     <fieldset class="rsvp-stage" id="lookupStage"><legend class="visually-hidden">Find your invitation</legend>
                         <h3 class="rsvp-stage-title" tabindex="-1">One invitation, one reply</h3><p class="form-help">Reply for everyone named on your invitation, with individual attendance and meal choices.</p>
-                        <div class="form-field"><label for="invitationName">Name or surname</label><input id="invitationName" type="text" autocomplete="name" required maxlength="120"></div>
-                        <div class="form-field"><label for="invitationCode">Invitation code</label><input id="invitationCode" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" required maxlength="40"></div>
-                        <p class="form-help">For this preview, use surname <strong>Example</strong> and code <strong>COUPLE-DEMO</strong> or <strong>FAMILY-DEMO</strong>.</p>
-                        <div class="trial-shortcuts"><button type="button" data-demo="COUPLE-DEMO">Try a couple</button><button type="button" data-demo="FAMILY-DEMO">Try a family</button></div>
+                        <div class="form-field"><label for="invitationName">Full name</label><input id="invitationName" type="text" autocomplete="name" required maxlength="120" aria-describedby="invitationNameHelp"></div>
+                        <p class="form-help" id="invitationNameHelp">Enter your name as it appears on your invitation. For this preview, try <strong>Alex Example</strong> for a couple or <strong>Taylor Example</strong> for a family.</p>
+                        <div class="trial-shortcuts"><button type="button" data-demo-name="Alex Example">Try a couple</button><button type="button" data-demo-name="Taylor Example">Try a family</button></div>
                         <button class="button button--dark form-submit" type="button" id="findInvitation">Find invitation</button>
                     </fieldset>
                     <fieldset class="rsvp-stage" id="partyStage" hidden disabled><legend class="visually-hidden">Your party and preferences</legend>
@@ -277,7 +276,7 @@
         <div class="noscript-note">Please enable JavaScript to use the live countdown and submit the RSVP form without leaving this page.</div>
     </noscript>
     <script src="scripts/main.js?v=2.13"></script>
-    <script src="scripts/household-rsvp.js?v=2.8"></script>
+    <script src="scripts/household-rsvp.js?v=2.14"></script>
     <script src="scripts/accommodation.js?v=2.6"></script>
 </body>
 </html>

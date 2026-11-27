@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Sample invitations only. Replace this trial with private server-side lookup
     // before adding real guests; never publish a real guest list in browser code.
-    const invitations = {
-        "COUPLE-DEMO": { title: "Example couple", guests: ["Alex Example", "Jamie Example"] },
-        "FAMILY-DEMO": { title: "Example family", guests: ["Taylor Example", "Casey Example", "Rowan Example", "Ellis Example"] }
-    };
+    const invitations = [
+        { title: "Example couple", guests: ["Alex Example", "Jamie Example"] },
+        { title: "Example family", guests: ["Taylor Example", "Casey Example", "Rowan Example", "Ellis Example"] }
+    ];
+    const normalizeName = name => name.trim().replace(/\s+/g, " ").toLocaleLowerCase("en-GB");
     const form = document.getElementById("rsvpForm");
     const lookup = document.getElementById("lookupStage");
     const party = document.getElementById("partyStage");
@@ -115,14 +116,15 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     const findInvitation = () => {
         if (!form.reportValidity()) return;
-        const code = document.getElementById("invitationCode").value.trim().toUpperCase();
-        const name = document.getElementById("invitationName").value.trim().toLocaleLowerCase();
-        const match = invitations[code];
-        const nameMatches = match?.guests.some(guest => guest.toLocaleLowerCase() === name || guest.toLocaleLowerCase().split(" ").includes(name));
-        if (!match || !nameMatches) {
-            announce("We couldn’t match that sample invitation. Try Example with COUPLE-DEMO or FAMILY-DEMO.");
+        const name = normalizeName(document.getElementById("invitationName").value);
+        const matches = invitations.filter(item => item.guests.some(guest => normalizeName(guest) === name));
+        if (matches.length !== 1) {
+            announce(matches.length > 1
+                ? "We found more than one invitation for that name. Please get in touch so we can help."
+                : "We couldn’t match that sample invitation. Try Alex Example or Taylor Example.");
             return;
         }
+        const [match] = matches;
         invitation = match;
         email.value = "";
         song.value = "";
@@ -167,9 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (card) card.open = true;
     }, true);
     document.getElementById("findInvitation").addEventListener("click", findInvitation);
-    document.querySelectorAll("[data-demo]").forEach(button => button.addEventListener("click", () => {
-        document.getElementById("invitationName").value = "Example";
-        document.getElementById("invitationCode").value = button.dataset.demo;
+    document.querySelectorAll("[data-demo-name]").forEach(button => button.addEventListener("click", () => {
+        document.getElementById("invitationName").value = button.dataset.demoName;
         findInvitation();
     }));
     const setPartyAttendance = value => cards.forEach(card => {

@@ -1,6 +1,6 @@
-The live index.html is an encrypted maintenance/preview page.
+The live index.html is an encrypted invitation entry page. The password opens a brief three-panel invitation animation before showing the wedding page. Reduced-motion visitors enter immediately, and the password can be shown or hidden while typing.
 
-Edit `_preview/index.html` for the wedding page, or `_preview/lock.html` for the maintenance screen. Then rebuild from PowerShell:
+Edit `_preview/index.html` for the wedding page, or `_preview/lock.html` for the invitation entry screen. Then rebuild from PowerShell:
 
 ```powershell
 Read-Host 'Preview password' | node scripts/lock-site.mjs

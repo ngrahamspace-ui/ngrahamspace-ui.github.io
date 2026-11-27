@@ -29,16 +29,30 @@ const validEmail = () => { d.getElementById('householdEmail').value = 'trial@exa
 const reviewText = () => d.getElementById('householdReview').textContent;
 
 assert(!d.getElementById('lookupStage').hidden);
+assert.equal(d.getElementById('invitationCode'), null, 'RSVP must not require an invitation code');
 d.getElementById('invitationName').value = 'Unknown';
-d.getElementById('invitationCode').value = 'COUPLE-DEMO';
 click('findInvitation');
 assert(!d.getElementById('lookupStage').hidden);
 assert(d.getElementById('formStatus').textContent.includes('couldn’t match'));
 
+// Any named household member can look up their group without a code.
+for (const [name, size] of [['  aLeX   eXaMpLe  ', 2], ['Jamie Example', 2], ['Taylor Example', 4], ['Casey Example', 4], ['Rowan Example', 4], ['Ellis Example', 4]]) {
+    d.getElementById('invitationName').value = name;
+    d.getElementById('rsvpForm').dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true }));
+    assert(!d.getElementById('partyStage').hidden);
+    assert.equal(cards().length, size);
+    click('changeInvitation');
+}
+for (const name of ['', '   ', 'Example', 'Alex', 'Alex Examples']) {
+    d.getElementById('invitationName').value = name;
+    click('findInvitation');
+    assert(!d.getElementById('lookupStage').hidden, 'Incomplete or unmatched names must not open a household');
+}
+
 // All menu combinations in a mixed-attendance couple.
 for (let starterIndex = 1; starterIndex <= 3; starterIndex++) {
     for (let mainIndex = 1; mainIndex <= 3; mainIndex++) {
-        d.querySelector('[data-demo="COUPLE-DEMO"]').click();
+        d.querySelector('[data-demo-name="Alex Example"]').click();
         assert.equal(cards().length, 2);
         const [first, second] = cards();
         assert(first.querySelector('.household-guest-meals').disabled);
@@ -68,7 +82,7 @@ for (let starterIndex = 1; starterIndex <= 3; starterIndex++) {
 }
 
 // Four-person family: independent choices, two declines, and hidden data exclusion.
-d.querySelector('[data-demo="FAMILY-DEMO"]').click();
+d.querySelector('[data-demo-name="Taylor Example"]').click();
 assert.equal(cards().length, 4);
 click('acceptParty');
 assert(cards().every(card => !card.querySelector('.household-guest-meals').disabled));
@@ -88,5 +102,5 @@ assert(!reviewText().includes('Song suggestion:'));
 assert.equal(requests, 0);
 assert.equal(d.querySelectorAll('#our-story img').length, 1);
 assert(html.includes('Parking at the church is restricted'));
-console.log('PASS: sample lookup; all 9 meal combinations; couple/family mixed attendance; required validation; guest notes; shared email/song; review/edit/reset; no real submissions.');
+console.log('PASS: code-free full-name lookup for every sample household member; case/spacing tolerance; unmatched names blocked; all 9 meal combinations; couple/family mixed attendance; required validation; guest notes; shared email/song; review/edit/reset; no real submissions.');
 dom.window.close();

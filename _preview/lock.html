@@ -4,58 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow, noarchive">
-    <meta name="theme-color" content="#f7f3ec">
-    <meta name="description" content="Our website is still being prepared. Please check back soon.">
-    <title>Under maintenance | N &amp; B</title>
+    <meta name="theme-color" content="#263c31">
+    <meta name="description" content="An invitation to celebrate with Nick and Belinda.">
+    <title>You're invited | Nick &amp; Belinda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <style>
+        :root { color-scheme: light; --paper: #fffdf9; --ink: #263c31; --gold: #b69a68; --sans: "Montserrat", Arial, sans-serif; --serif: "Cormorant Garamond", Georgia, serif; }
         * { box-sizing: border-box; }
-        body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; background: #f7f3ec; color: #26372c; font: 18px/1.6 Georgia, serif; }
-        main { width: min(100%, 480px); padding: clamp(28px, 7vw, 56px); text-align: center; background: #fffdf9; border: 1px solid #d3c4ae; box-shadow: 0 24px 70px #222a2312; }
-        .monogram { margin: 0 0 28px; font-size: 32px; letter-spacing: .16em; }
-        .monogram span { color: #ad8b57; font-style: italic; }
-        .eyebrow { font: 14px/1.6 Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #555a52; }
-        h1 { margin: 12px 0; font-size: clamp(32px, 6vw, 44px); font-weight: 400; line-height: 1.2; }
-        p { margin: 16px 0; }
-        form { margin-top: 30px; text-align: left; font-family: Arial, sans-serif; font-size: 16px; }
-        label { display: block; margin-bottom: 8px; }
-        input, button { width: 100%; min-height: 48px; padding: 12px 16px; border: 1px solid #b3b9b0; border-radius: 3px; font: inherit; }
-        input { background: #fff; color: #20231f; }
-        button { margin-top: 14px; background: #435746; color: white; border-color: #435746; cursor: pointer; }
-        button:disabled { opacity: .7; cursor: wait; }
-        :focus-visible { outline: 3px solid #ad8b57; outline-offset: 3px; }
-        #message { min-height: 1.6em; margin: 12px 0 0; color: #8c3434; font: 16px/1.6 Arial, sans-serif; }
-        noscript { display: block; margin-top: 20px; }
+        body { margin: 0; min-height: 100svh; padding: 40px 24px 28px; display: grid; place-items: center; color: var(--paper); background: radial-gradient(ellipse at 50% 35%, #3e5747 0, #263c31 65%, #203228 100%); font: 18px/1.6 var(--serif); }
+        body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .16; background-image: repeating-linear-gradient(0deg, transparent, transparent 3px, #ffffff0b 3px, #ffffff0b 4px), repeating-linear-gradient(90deg, transparent, transparent 3px, #ffffff09 3px, #ffffff09 4px); }
+        main { width: min(100%, 430px); text-align: center; }
+        .arrival-note { margin: 0 0 48px; color: #eee5d4; font: 500 .875rem/1.6 var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+        .invitation-stage { perspective: 1800px; }
+        .invitation { position: relative; isolation: isolate; transform-style: preserve-3d; }
+        .invitation-face, .invitation-wing { color: var(--ink); background: var(--paper); border: 1px solid #c8b48e; }
+        .invitation-face { position: relative; z-index: 2; padding: 44px 32px 24px; box-shadow: 0 28px 75px #07180f66, inset 0 0 0 7px var(--paper), inset 0 0 0 8px #b69a6859; }
+        .invitation-wing { position: absolute; z-index: 1; inset-block: 0; width: 65%; display: grid; place-content: center; padding: 24px; backface-visibility: hidden; box-shadow: inset 0 0 0 8px var(--paper), inset 0 0 0 9px #b69a6870; transition: transform 850ms 50ms cubic-bezier(.2,.7,.2,1); }
+        .invitation-wing--left { right: 100%; transform-origin: right center; transform: rotateY(178deg); }
+        .invitation-wing--right { left: 100%; transform-origin: left center; transform: rotateY(-178deg); }
+        .wing-flourish { width: 72px; height: 104px; margin: 0 auto 20px; fill: none; stroke: #9a7b43; stroke-width: 1.2; }
+        .invitation-wing p { margin: 0; font-size: 28px; line-height: 1.2; }
+        .invitation-wing small { display: block; margin-top: 12px; color: #535b50; font: .875rem/1.7 var(--sans); }
+        .wax-seal { position: absolute; z-index: 4; top: -31px; left: calc(50% - 31px); width: 62px; height: 62px; display: grid; place-items: center; color: #4d3b1c; background: radial-gradient(circle at 32% 24%, #e3d0a0, #c4a66c 62%, #97743e); border: 1px solid #dcc18e; border-radius: 46% 50% 47% 49%; box-shadow: 0 5px 12px #29332029, inset 0 0 0 5px #c6aa7380, inset 0 0 0 6px #8d703c80; font: 500 20px/1 var(--serif); transition: transform 350ms ease, opacity 350ms ease; }
+        .eyebrow { margin: 0 0 12px; color: #59634f; font: 500 .875rem/1.6 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+        h1 { margin: 0; font-size: clamp(2.4rem, 7vw, 3.5rem); line-height: 1.1; font-weight: 400; letter-spacing: -.025em; }
+        h1 span { color: #94743f; font-style: italic; }
+        .date { margin: 14px 0 0; color: #535b50; font: .875rem/1.6 var(--sans); letter-spacing: .06em; }
+        .invitation-rule { width: 56px; height: 1px; margin: 24px auto; background: var(--gold); }
+        form { position: relative; text-align: left; font: 1rem/1.6 var(--sans); transition: opacity 180ms ease, transform 250ms ease; }
+        label { display: block; margin-bottom: 8px; font-weight: 500; }
+        .password-field { position: relative; }
+        input, button { font: inherit; border-radius: 3px; }
+        input { width: 100%; min-height: 52px; padding: 12px 76px 12px 14px; border: 1px solid #929c8d; color: var(--ink); background: #fff; }
+        input[aria-invalid="true"] { border-color: #963f36; }
+        .password-toggle { position: absolute; right: 4px; top: 4px; min-width: 60px; min-height: 44px; padding: 8px; border: 0; color: #435746; background: transparent; font-size: .875rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+        .password-hint { margin: 10px 0 18px; color: #535b50; font-size: .875rem; line-height: 1.6; }
+        .unlock-button { width: 100%; min-height: 52px; padding: 14px 16px; border: 1px solid #263c31; color: var(--paper); background: #263c31; font-weight: 500; cursor: pointer; transition: background 150ms ease; }
+        .unlock-button:hover { background: #435746; }
+        button:disabled { cursor: wait; }
+        .unlock-button:disabled { opacity: .8; }
+        :focus-visible { outline: 3px solid #94743f; outline-offset: 3px; }
+        #message { min-height: 3.2em; margin: 12px 0 0; color: #8c3434; font-size: .875rem; line-height: 1.6; }
+        .invitation-welcome { position: absolute; z-index: 3; inset: 32px 20px 20px; display: grid; align-content: center; padding: 24px; background: var(--paper); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 250ms 160ms ease, visibility 250ms 160ms; }
+        .invitation-welcome p { margin: 0; font-size: 38px; line-height: 1.15; }
+        .invitation-welcome span { display: block; margin-top: 18px; color: #535b50; font: .875rem/1.7 var(--sans); }
+        .closing-note { margin: 28px 0 0; color: #e5dfd0; font: .875rem/1.7 var(--sans); }
+        noscript { display: block; margin-top: 24px; }
+        .is-mistaken { animation: gentleNudge 280ms ease; }
+        .is-opening .wax-seal { transform: translateY(-28px) rotate(-14deg) scale(1.08); opacity: 0; }
+        .is-opening .invitation-wing { transform: rotateY(0); }
+        .is-opening .invitation { animation: invitationReveal 1100ms ease both; }
+        .is-opening form { opacity: 0; transform: translateY(8px); pointer-events: none; }
+        .is-opening .invitation-welcome { opacity: 1; visibility: visible; }
+        .is-opening .arrival-note, .is-opening .closing-note { opacity: 0; transition: opacity 200ms ease; }
+        @keyframes gentleNudge { 0%, 100% { transform: translateX(0); } 30% { transform: translateX(-4px); } 65% { transform: translateX(4px); } }
+        @keyframes invitationReveal { 0% { transform: scale(1); opacity: 1; } 70% { transform: scale(.86); opacity: 1; } 100% { transform: scale(.86) translateY(-8px); opacity: 0; } }
+        @media (max-width: 1100px) { @keyframes invitationReveal { 0% { transform: scale(1); opacity: 1; } 70% { transform: scale(.68); opacity: 1; } 100% { transform: scale(.68) translateY(-8px); opacity: 0; } } }
+        @media (max-width: 700px) {
+            body { padding: 48px 20px 24px; overflow-x: clip; }
+            .arrival-note, .closing-note { display: none; }
+            .invitation-face { padding: 38px 24px 16px; }
+            .invitation-rule { margin-block: 16px; }
+            .password-hint { margin: 8px 0 14px; }
+            @keyframes invitationReveal { 0% { transform: scale(1); opacity: 1; } 70% { transform: scale(.42); opacity: 1; } 100% { transform: scale(.42) translateY(-8px); opacity: 0; } }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
     </style>
 </head>
 <body>
-    <main>
-        <p class="monogram" aria-label="N and B">N <span>&amp;</span> B</p>
-        <p class="eyebrow">A little work in progress</p>
-        <h1>Something lovely is on its way</h1>
-        <p>We’re putting the finishing touches to our website. Please check back soon.</p>
-        <form id="unlockForm">
-            <label for="password">Preview password</label>
-            <input id="password" name="password" type="password" inputmode="numeric" autocomplete="current-password" required aria-describedby="message">
-            <button id="unlockButton" type="submit">Unlock preview</button>
-            <p id="message" role="status" aria-live="polite"></p>
-        </form>
-        <noscript>Please enable JavaScript to unlock the preview.</noscript>
+    <main aria-labelledby="invitation-title">
+        <p class="arrival-note">An invitation to celebrate with us</p>
+        <div class="invitation-stage">
+            <div class="invitation" id="invitation">
+                <div class="invitation-wing invitation-wing--left" aria-hidden="true">
+                    <svg class="wing-flourish" viewBox="0 0 72 104"><path d="M36 98C22 72 46 48 35 8M33 28C17 30 12 21 11 12C25 12 31 17 33 28ZM34 46C49 45 57 35 58 26C43 27 37 35 34 46ZM29 66C15 65 8 55 9 46C23 48 28 55 29 66ZM31 82C47 80 57 70 57 60C43 61 34 72 31 82Z"/></svg>
+                    <p>With love</p><small>Nick &amp; Belinda</small>
+                </div>
+                <div class="invitation-wing invitation-wing--right" aria-hidden="true">
+                    <svg class="wing-flourish" viewBox="0 0 72 104"><path d="M36 98C50 72 26 48 37 8M39 28C55 30 60 21 61 12C47 12 41 17 39 28ZM38 46C23 45 15 35 14 26C29 27 35 35 38 46ZM43 66C57 65 64 55 63 46C49 48 44 55 43 66ZM41 82C25 80 15 70 15 60C29 61 38 72 41 82Z"/></svg>
+                    <p>Our next chapter</p><small>We can’t wait to celebrate with you.</small>
+                </div>
+                <div class="invitation-face">
+                    <div class="wax-seal" aria-hidden="true">N &amp; B</div>
+                    <p class="eyebrow">You’re invited</p>
+                    <h1 id="invitation-title">Nick <span>&amp;</span> Belinda</h1>
+                    <p class="date">Wednesday, 9 June 2027</p>
+                    <div class="invitation-rule" aria-hidden="true"></div>
+                    <form id="unlockForm" method="post">
+                        <label for="password">Website password</label>
+                        <div class="password-field">
+                            <input id="password" name="password" type="password" inputmode="numeric" autocomplete="current-password" required aria-describedby="passwordHint message">
+                            <button class="password-toggle" id="showPassword" type="button" aria-label="Show password" aria-pressed="false">Show</button>
+                        </div>
+                        <p class="password-hint" id="passwordHint">Use the password shared with your invitation.</p>
+                        <button class="unlock-button" id="unlockButton" type="submit">Open our invitation</button>
+                        <p id="message" role="status" aria-live="polite"></p>
+                    </form>
+                    <div class="invitation-welcome" aria-hidden="true"><p>We’re so glad<br>you’re here.</p><span>Let the celebrations begin.</span></div>
+                </div>
+            </div>
+        </div>
+        <p class="closing-note">For our favourite people, with love.</p>
+        <noscript><style>#unlockForm { display: none; }</style>Please enable JavaScript to open your invitation.</noscript>
     </main>
     <script>
         const preview = /* ENCRYPTED_PREVIEW */;
         const decode = value => Uint8Array.from(atob(value), character => character.charCodeAt(0));
-        document.getElementById('unlockForm').addEventListener('submit', async event => {
+        const form = document.getElementById('unlockForm');
+        const input = document.getElementById('password');
+        const button = document.getElementById('unlockButton');
+        const message = document.getElementById('message');
+        const showPassword = document.getElementById('showPassword');
+        const invitation = document.getElementById('invitation');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let unlocking = false;
+
+        showPassword.addEventListener('click', () => {
+            const visible = input.type === 'password';
+            input.type = visible ? 'text' : 'password';
+            showPassword.textContent = visible ? 'Hide' : 'Show';
+            showPassword.setAttribute('aria-label', visible ? 'Hide password' : 'Show password');
+            showPassword.setAttribute('aria-pressed', String(visible));
+        });
+        input.addEventListener('input', () => {
+            input.removeAttribute('aria-invalid');
+            invitation.classList.remove('is-mistaken');
+            message.textContent = '';
+        });
+        form.addEventListener('submit', async event => {
             event.preventDefault();
-            const input = document.getElementById('password');
-            const button = document.getElementById('unlockButton');
-            const message = document.getElementById('message');
+            if (unlocking) return;
             if (!window.crypto?.subtle) {
-                message.textContent = 'Please open the HTTPS website in an up-to-date browser to preview it.';
+                message.textContent = 'Please open the HTTPS website in an up-to-date browser to view your invitation.';
                 return;
             }
+            unlocking = true;
             button.disabled = true;
-            button.textContent = 'Unlocking…';
+            showPassword.disabled = true;
+            input.readOnly = true;
+            button.textContent = 'Opening your invitation…';
+            form.setAttribute('aria-busy', 'true');
             input.removeAttribute('aria-invalid');
+            invitation.classList.remove('is-mistaken');
             message.textContent = '';
             let html;
             try {
@@ -64,14 +158,25 @@
                 const result = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: decode(preview.iv) }, key, decode(preview.data));
                 html = new TextDecoder().decode(result);
             } catch {
-                message.textContent = 'That password isn’t correct. Please try again.';
+                message.textContent = 'That password isn’t quite right. Please check it and try again.';
                 input.setAttribute('aria-invalid', 'true');
+                input.readOnly = false;
+                input.focus();
                 input.select();
                 button.disabled = false;
-                button.textContent = 'Unlock preview';
+                showPassword.disabled = false;
+                button.textContent = 'Open our invitation';
+                form.removeAttribute('aria-busy');
+                unlocking = false;
+                if (!reducedMotion.matches) invitation.classList.add('is-mistaken');
                 return;
             }
-            // Replacing the document also runs its original scripts and load events.
+            message.textContent = 'Welcome. Opening your invitation.';
+            if (!reducedMotion.matches) {
+                document.body.classList.add('is-opening');
+                await new Promise(resolve => window.setTimeout(resolve, 1100));
+            }
+            // Replacing the document runs the wedding page's original scripts.
             document.open();
             document.write(html);
             document.close();
